@@ -87,19 +87,56 @@ That's it! You're ready to start coding in Spark in Fabric Notebook ! ✨
 ### 1.2.3 Understanding Markdown vs. Code Cells
 In Fabric Notebook, you can use Markdown and Code cells to enhance your workflow.
 
-How to Add a Cell
-To insert a new cell, hover above or below an existing one. You'll see options to add either a Markdown or Code cell—simply select the type you need!
+1. To insert a new Mardown or Code cell, hover above or below an existing one. You'll see options to add either a Markdown or Code cell—simply select the type you need!
 
 ![Renaming a Notebook](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.2.1e.jpg) 
 
-When to Use Markdown Cells
-Markdown cells help you document your work, making it easier for collaborators and readers to understand your code. 
-With Fabric Notebook’s rich Markdown editor, you can:
-- Add headings and paragraphs
-- Embed images
-- Format text
+Lets try this with a sample Spark code and add the context in the Markdown. 
 
-When to Use Code Cells
-Use Code cells to write and execute your Spark code. These cells run your scripts, process data, and bring your notebook to life!
+2. Adding a Markdown Cell  
+Markdown cells help you document your work, making it easier for collaborators and readers to understand your code.  
+With Fabric Notebook’s rich Markdown editor, you can:  
+- **Add headings and paragraphs** for better structure  
+- **Embed images** to enhance explanations  
+- **Format text** using bold, italics, and lists  
+
+Now, add a **Markdown cell** and include the following description:  
+
+> ## Simple Test  
+> The following Spark code creates and displays a DataFrame with 3 records.
+
+💡 *Now, let's add a sample Spark code in a Code cell!*  
+
+3. Adding a Code Cell with Sample Spark Code
+Now, add a **Code cell** and enter the following **PySpark** code:  
+
+~~~python
+# Import required libraries
+from pyspark.sql import Row
+
+# Create a sample DataFrame with 3 records
+data = [Row(id=1, name="Alice", age=25),
+        Row(id=2, name="Bob", age=30),
+        Row(id=3, name="Charlie", age=35)]
+
+df = spark.createDataFrame(data)
+
+# Display the DataFrame
+df.show()
+~~~
+
+4. To execute a cell, simply click **Connect** and choose either:
+   - **Run All** to execute all cells in the notebook, or
+   - **Run** (located on the left of the cell) to run a specific cell only.
+
+![Executing Cells](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.2.1f.jpg)
+
+5. After running a cell, you'll see the **status** and **results** displayed below the respective cells.
+
+![Results Display](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.2.1g.jpg)
+
+💡 *Click on Spark Jobs, Resources, and Log to dive deeper into the run details. You’ll explore these in the upcoming labs.*
+
+**Awesome!** You've successfully added a Markdown cell for documentation and a Code cell to run Spark code. Now, go ahead and try modifying the dataset or adding some transformations to explore more!
 
 ---
