@@ -65,7 +65,7 @@ The **Fabric UI Notebook** is the easiest way to get started—no setup required
 
 #### How to Create a Notebook in Fabric UI  
 1. Click the **Fabric logo** in the bottom-left corner of the screen.
-![Fabric UI](screenshots\module-1-developing-spark\1.2.1a.jpg)  
+![Fabric UI](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.2.1a.jpg)  
 2. You'll see options for **Fabric** and **Power BI**—select **Fabric**.  
 3. Choose your **workspace**.  
 4. Click **New Item** → **Notebook** to create a new notebook.  
