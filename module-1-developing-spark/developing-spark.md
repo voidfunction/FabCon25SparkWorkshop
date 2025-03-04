@@ -65,11 +65,20 @@ The **Fabric UI Notebook** is the easiest way to get started—no setup required
 
 #### How to Create a Notebook in Fabric UI  
 1. Click the **Fabric logo** in the bottom-left corner of the screen.
+
 ![Fabric UI](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.2.1a.jpg)  
+
 2. You'll see options for **Fabric** and **Power BI**—select **Fabric**.  
-3. Choose your **workspace**.  
-4. Click **New Item** → **Notebook** to create a new notebook.  
-5. Click next to the **Notebook icon** to rename your notebook.  
+
+![Select Fabric in the Option](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.2.1b.jpg) 
+
+3. Choose your **workspace**.  Click **New Item** → **Notebook** to create a new notebook. 
+
+![Creating a new Notebook](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.2.1c.jpg) 
+
+4. Click next to the **Notebook icon** to rename your notebook.  
+
+![Renaming a Notebook](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.2.1d.jpg) 
 
 That's it! You're ready to start coding in Spark in Fabric Notebook ! ✨  
 
