@@ -84,4 +84,22 @@ That's it! You're ready to start coding in Spark in Fabric Notebook ! ✨
 
 ### 1.2.2 Integrating with Visual Studio Code
 
+### 1.2.3 Understanding Markdown vs. Code Cells
+In Fabric Notebook, you can use Markdown and Code cells to enhance your workflow.
+
+How to Add a Cell
+To insert a new cell, hover above or below an existing one. You'll see options to add either a Markdown or Code cell—simply select the type you need!
+
+![Renaming a Notebook](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.2.1e.jpg) 
+
+When to Use Markdown Cells
+Markdown cells help you document your work, making it easier for collaborators and readers to understand your code. 
+With Fabric Notebook’s rich Markdown editor, you can:
+- Add headings and paragraphs
+- Embed images
+- Format text
+
+When to Use Code Cells
+Use Code cells to write and execute your Spark code. These cells run your scripts, process data, and bring your notebook to life!
+
 ---
