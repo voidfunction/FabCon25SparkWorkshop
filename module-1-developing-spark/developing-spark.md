@@ -186,7 +186,7 @@ By default, session timeout is 20 minutes. You can extend it while working on de
 
   ~~~python
   # Load JSON data from ADLS
-  input_df = spark.read.option("multiline", "true").json(adls_path)
+  input_df = spark.read.option("multiline", "true").json(<your_adls_path>)
 
   # Show the schema of the DataFrame
   input_df.printSchema()
@@ -205,7 +205,7 @@ By default, session timeout is 20 minutes. You can extend it while working on de
 
   ~~~python
   # Read Parquet file into a DataFrame
-  df = spark.read.parquet("path/to/parquet_file.parquet")
+  df = spark.read.parquet("<your_adls_path>/*.parquet")
 
   # Show first 10 records
   df.show(10, truncate=False)
@@ -279,9 +279,10 @@ This approach **optimizes resource usage and accelerates execution times**, enha
 
 ### 1.6 Using `notebookutils` for Secure Access  [5 minutes]
   - Access **Azure Key Vault (AKV)** securely within your notebooks
+
   [To be updated]  
 
-### Bonus
+### 🌟 Bonus - Spark Structured Streaming
 
 #### Read Streaming JSON Data
 In this Bonus section, we will walk through how to read streaming JSON data from Azure Data Lake Storage (ADLS) using Apache Spark's structured streaming capabilities. This method allows Spark to continuously read new JSON files as they arrive, while ignoring the files that have already been processed. It's especially useful for processing real-time data streams.
@@ -336,7 +337,7 @@ This extracts the OrderID and Product fields from the json_data column.
       query = parsed_df.writeStream \
           .outputMode("append") \
           .foreachBatch(process_batch) \
-          .option("checkpointLocation", "abfss://fabricconlab@vengcatadls001.dfs.core.windows.net/jsonstreaming/checkpoints/") \
+          .option("checkpointLocation", "<your_adls_path>/jsonstreaming/checkpoints/") \
           .start()
       ~~~
 
