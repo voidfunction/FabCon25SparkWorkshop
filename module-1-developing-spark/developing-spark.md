@@ -252,6 +252,8 @@ By default, session timeout is 20 minutes. You can extend it while working on de
   gold_df = orders_df.join(products_df, "ProductID", "inner")
   ~~~
 
+---
+
 ### 1.4 Running & Managing Notebooks  [5 minutes]  
 
 #### 1.4.1 Execute Notebooks in Different Modes  
@@ -300,6 +302,8 @@ This approach **optimizes resource usage and accelerates execution times**, enha
 > spark.sql("SELECT * FROM global_temp.global_view")  
 > ```
 
+---
+
 ### 1.5 Configuring & Publishing Your Spark Environment [15 minutes] 
   - Manage **libraries** and dependencies in the UI  
   - Choose between **Starter Pools vs Custom Pools** and understand the difference  
@@ -307,10 +311,14 @@ This approach **optimizes resource usage and accelerates execution times**, enha
 
   [To be updated]
 
+---
+
 ### 1.6 Using `notebookutils` for Secure Access  [5 minutes]
   - Access **Azure Key Vault (AKV)** securely within your notebooks
 
   [To be updated]  
+
+---
 
 ### 🌟 Bonus - Spark Structured Streaming
 
@@ -372,3 +380,13 @@ This extracts the OrderID and Product fields from the json_data column.
       ~~~
 
 **Tip**: Don't forget to stop the stream once you're done testing, as it will continue running indefinitely.
+
+## 🎉 Wrapping Up the Exercise: Developing Spark Applications
+
+Congrats on completing this hands-on exercise! 🚀 You've learned the following this chapter:
+
+- **Notebook Development**: You’ve explored how to create and work with Spark notebooks in different interfaces like Fabric UI and VS Code, using standard and high concurrency session.
+
+- **Spark Basics**: You’ve loaded, transformed, and written data in various formats using DataFrames, and you’ve worked with different layers of data processing to prepare it for analytics.
+
+---
