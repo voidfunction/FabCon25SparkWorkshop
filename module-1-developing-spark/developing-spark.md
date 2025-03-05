@@ -84,6 +84,11 @@ The **Fabric UI Notebook** is the easiest way to get started—no setup required
 
 ![Creating a new Notebook](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.2.1c.jpg) 
 
+Alternatively, if you're importing a pre-built Notebook, click on import.
+
+![Importing Notebook](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.1a.jpg)
+
+
 4. Click next to the **Notebook icon** to rename your notebook.  
 
 ![Renaming a Notebook](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.2.1d.jpg) 
@@ -161,6 +166,10 @@ You can change the kernel at the notebook level or cell level with:
 
 7. **Extending Session Timeout**:
 By default, session timeout is 20 minutes. You can extend it while working on development. To extend session expiry, click on the Session Ready status. It will display session information, and you can click reset and add time.
+
+![Session Timeout](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.3.1b.jpg)
+
+💡**Note**: The Session Ready icon will only be visible if a session is currently running 
 
 **Awesome!** You've successfully added a Markdown cell for documentation and a Code cell to run Spark code. Now, go ahead and try modifying the dataset or adding some transformations to explore more!
 
@@ -255,20 +264,41 @@ Fabric offers two types of sessions for running Spark Notebooks, each optimized 
 This significantly **reduces cumulative session startup time**, improving developer productivity.  
 
 #### **Running a Standard Session**  
-1. Click on the **Standard Session** icon.  
+1. Click on the **Connect** icon.  
 2. Select **New Standard Session** and run your Notebook.  
+
+![Session](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.4.1a.jpg)
 
 #### **Testing High Concurrency (HC) Mode**  
 1. Create **two Notebooks** (Notebook 1 and Notebook 2) for testing.  
 2. In **Notebook 1**, start a **High Concurrency Session**:  
-   - Click on the **Standard Session** icon.  
-   - Choose **New High Concurrency Session** and run Notebook 1.  
+   - Click on the **Connect** icon.  
+   - Choose **New High Concurrency Session** and run Notebook 1. 
+
+![HC Session](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.4.1b.jpg) 
+
 3. In **Notebook 2**, check the available sessions:  
-   - Click on the **Standard Session** icon.  
+   - Click on the **Connect** icon.  
    - You will see the **existing High Concurrency session** available for attachment.  
    - Attach Notebook 2 to the same session and run it.  
 
-This approach **optimizes resource usage and accelerates execution times**, enhancing your interactive data workflows! 🚀  
+![Attaching to existing HC Session](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.4.1c.jpg) 
+
+This approach **optimizes resource usage and accelerates execution times**, enhancing your interactive data workflows! 🚀 
+
+>💡 **Tip:** You can share data across notebooks within the same HC session using a **Global Spark View**.  
+>  
+> If you create a **Global View** in **Notebook 1** like this:  
+>  
+> ```python  
+> df.createOrReplaceGlobalTempView("global_view")  
+> ```  
+>  
+> You can access it from any other notebook in the same HC session:  
+>  
+> ```python  
+> spark.sql("SELECT * FROM global_temp.global_view")  
+> ```
 
 ### 1.5 Configuring & Publishing Your Spark Environment [15 minutes] 
   - Manage **libraries** and dependencies in the UI  
