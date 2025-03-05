@@ -279,9 +279,10 @@ This approach **optimizes resource usage and accelerates execution times**, enha
 
 ### 1.6 Using `notebookutils` for Secure Access  [5 minutes]
   - Access **Azure Key Vault (AKV)** securely within your notebooks
+  
   [To be updated]  
 
-### Bonus
+### 🌟 Bonus - Spark Structured Streaming
 
 #### Read Streaming JSON Data
 In this Bonus section, we will walk through how to read streaming JSON data from Azure Data Lake Storage (ADLS) using Apache Spark's structured streaming capabilities. This method allows Spark to continuously read new JSON files as they arrive, while ignoring the files that have already been processed. It's especially useful for processing real-time data streams.
