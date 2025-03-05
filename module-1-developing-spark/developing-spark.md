@@ -84,6 +84,11 @@ The **Fabric UI Notebook** is the easiest way to get started—no setup required
 
 ![Creating a new Notebook](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.2.1c.jpg) 
 
+Alternatively, if you're importing a pre-built Notebook, click on import.
+
+![Importing Notebook](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.1a.jpg)
+
+
 4. Click next to the **Notebook icon** to rename your notebook.  
 
 ![Renaming a Notebook](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.2.1d.jpg) 
@@ -161,6 +166,10 @@ You can change the kernel at the notebook level or cell level with:
 
 7. **Extending Session Timeout**:
 By default, session timeout is 20 minutes. You can extend it while working on development. To extend session expiry, click on the Session Ready status. It will display session information, and you can click reset and add time.
+
+![Session Timeout](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.3.1b.jpg)
+
+💡**Note**: The Session Ready icon will only be visible if a session is currently running 
 
 **Awesome!** You've successfully added a Markdown cell for documentation and a Code cell to run Spark code. Now, go ahead and try modifying the dataset or adding some transformations to explore more!
 
