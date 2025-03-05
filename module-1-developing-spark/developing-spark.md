@@ -5,7 +5,7 @@ Welcome to this hands-on lab! In this exercise, you'll explore key concepts and 
 ## 🔥 How to Get Started  
 You have two ways to approach this lab:  
 **Option 1:** Create a new Notebook and follow the step-by-step instructions.  
-**Option 2:** Download the pre-built Notebook, run the code, and experiment with it.
+**Option 2:** Download the pre-built Notebook [module-1-developing-spark/Lab 1 - Developing Spark Applications.ipynb](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/module-1-developing-spark/Lab%201%20-%20Developing%20Spark%20Applications.ipynb), run the code, and experiment with it.
 
 ## 🎯 What You'll Learn 
 
