@@ -1,6 +1,6 @@
 # 🚀 Exercise 1 - Developing Spark Applications  
 
-Welcome to this hands-on lab! In this exercise, you'll explore key concepts and techniques for building efficient Spark applications. Get ready to dive in!  
+Welcome to this hands-on lab! In this exercise, you'll explore key concepts and techniques for building efficient Spark applications. Let's dive in!  
 
 ## 🔥 How to Get Started  
 You have two ways to approach this lab:  
@@ -41,13 +41,13 @@ Now that you have an overview, let's get started with hands-on exercises! 🚀
 
 ## 1.1 Understanding the Medallion Architecture  
 
-In this lab, we'll implement the **Medallion Architecture** in this lab, a structured approach to organizing data in layers for better performance and reliability:  
+In this lab, we'll implement the **Medallion Architecture**, a structured approach to organizing data in layers for better performance and reliability:  
 
-- **Bronze Layer**: data lands into this zone directly from the source systems in its original format.  This zone is generally considered append only and immutable. For this lab, raw data is stored in **Azure Data Lake Storage (ADLS)** in **JSON** and **Parquet** formats. 
+- **Bronze Layer** : This layer serves as the initial landing zone for data from the source systems, preserving its original format. This zone is typically **append-only** and **immutable**.  
 
-- **Silver Layer**: Data is cleaned, standardized, and stored in **OneLake** using a **Flattened Delta** format for better querying. 
+- **Silver Layer**: Data is cleaned, standardized, and stored in **OneLake** in **Flattened Delta** format for better querying. 
 
-- **Gold Layer**: Optimized for analytics, and stored in **OneLake**. It can have:
+- **Gold Layer**: Optimized for analytics, and stored in **OneLake**. It can have denormalized tables or fact and dimension tables :
     - Denormalized Tables – Optimized for fast querying in reporting tools like Power BI. These tables combine fact and dimension data to reduce the need for joins.
     - Fact and Dimension Tables – A more normalized approach, useful for maintaining data integrity and flexibility while still being optimized for analytics.
 
@@ -97,7 +97,55 @@ That's it! You're ready to start coding in Spark in Fabric Notebook ! ✨
 
 ### 1.2.2 Integrating with Visual Studio Code
 
-[To be Updated]
+You can integrate with Visual studio desktop or web. For this lab, we will set up Visual Studio web. 
+
+#### 1. Install the Fabric Data Engineering VS Code extension for the Web
+
+Navigate to https://vscode.dev in your browser.
+
+![vscode.dev](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.1b.jpg) 
+
+Select the Extensions icon in the left navigation bar.
+
+![Fabric Engineering Extension](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.1c.jpg) 
+
+Search for Fabric Data Engineering and select the Fabric Data Engineering VS Code - Remote pre-release
+
+![Fabric Engineering Extension](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.1d.jpg) 
+
+click Install.
+
+![Installing Fabric Engineering Extension](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.1e.jpg) 
+
+#### 2. Open the Notebook with VS Code Web
+
+Open your current notebook in the VS Code for the Web experience by clicking the Open in VS Code(Web) button in the notebook authoring page in the Fabric portal.
+
+![Open Notebook with VS Code Web](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.2b.jpg) 
+
+select Synapse VS Code -Remote as the kernel and then select Synapse PySpark.
+
+![Selecting Kernel](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.2c.jpg) 
+
+![Selecting Kernel](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.2d.jpg) 
+
+If configurely correctly, you will see Syapse PySpark in the selected kernel as shown here
+
+![Selected Kernel](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.2e.jpg) 
+
+If you're have a new notebook, you can test execution by adding a simple command such as:
+
+~~~python
+print(5)
+~~~
+
+Then execute the cell. You can update a cell and ctrl + s to save the work. 
+
+![Selected Kernel](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.2f.jpg) 
+
+![Updating Notebook](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.2g.jpg) 
+
+***Note**: Let's continue doing our labs in Notebook in Fabric UI.*
 
 ### 1.2.3 Understanding Markdown vs. Code Cells
 In Fabric Notebook, you can use Markdown and Code cells to enhance your development and collaboration. 
@@ -109,6 +157,7 @@ In Fabric Notebook, you can use Markdown and Code cells to enhance your developm
 Lets try this with a sample Spark code and add the context in the Markdown. 
 
 2. Adding a Markdown Cell  
+
 Markdown cells help you document your work, making it easier for collaborators and readers to understand your code.  
 With Fabric Notebook’s rich Markdown editor, you can:  
 - **Add headings and paragraphs** for better structure  
@@ -179,12 +228,28 @@ By default, session timeout is 20 minutes. You can extend it while working on de
 
   ### 1.3.1 Bronze Layer: Load Raw Data into a **DataFrame (DF)**
 
-  In Spark, you can load data into a DataFrame using the `spark.read()` method. This allows you to read from a variety of source formats such as CSV, JSON, Parquet, Avro, ORC, Delta, and many others. 
+  We have raw **FHIR Patient** and **Observations** data are stored in **Azure Data Lake Storage (ADLS)**. We have created Shortcuts to ADLS Gen2. Shortcuts are the objects in OneLake that point to other storage locations. Shortcuts just appear as another folder in the Lakehouse.
+  
+  For this lab, you can acess the raw data using shortcuts **observationsraw** and **patientraw** in **bronzerawdata** Lakehouse. 
 
-  In this lab, we'll focus on reading **Parquet** files and **streaming JSON** files.
+  To attach **bronzerawdata** lakehouse to the Notebook, click +Lakehouses and select the bronzerawdata in existing Lakehouses with schema. 
+
+  ![Attaching Lakehouse](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.3.1a1.jpg)
+
+  In Spark, you can load data into a DataFrame using the `spark.read()` method. This allows you to read from a variety of source formats such as CSV, JSON, Parquet, Avro, ORC, Delta, and many others. 
+  
+  You can refer to the Spark documentation for the methods to read different formats: https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.DataFrameReader.html
+
+  In this lab, we'll focus on reading **Parquet** files and **streaming JSON** files. We will read the shortcuts observationsraw (JSON files) and patientraw (Parquet files). 
+
+    ![Files in Lakehouse](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.3.1a2.jpg)
 
 
   #### **Load JSON Data into a DataFrame**
+
+  **What is a Dataframe?**
+
+  In Spark, a DataFrame is a distributed collection of data organized into named columns similar to an SQL table. It is similar to a table in a relational database or a spreadsheet in that it has a schema, which defines the types and names of its columns, and each row represents a single record or observation.
 
   To begin, let's load a JSON file from Azure Data Lake Storage (ADLS) into a Spark DataFrame. 
 
@@ -193,15 +258,20 @@ By default, session timeout is 20 minutes. You can extend it while working on de
   - print the schema
   - display the data
 
+  Copy the relative path of **observationraw**
+
+  ![Path of observationraw shortcut](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.3.1a3.jpg)
+
   ~~~python
-  # Load JSON data from ADLS
-  input_df = spark.read.option("multiline", "true").json(<your_adls_path>)
+  from pyspark.sql.functions import from_json,col
 
-  # Show the schema of the DataFrame
-  input_df.printSchema()
+  observations_shortcut_path="Files/observationsraw"
+  # Load JSON data
+  observations_raw_df = spark.read.json(observations_shortcut_path)
 
-  # Display the data (first few rows)
-  input_df.show(truncate=False)
+  observations_raw_df.printSchema()
+
+  observations_raw_df.show(truncate=False)
   ~~~
 
   **printSchema()**: Prints the schema of the DataFrame, giving you an overview of the data structure.
@@ -210,47 +280,240 @@ By default, session timeout is 20 minutes. You can extend it while working on de
 
   #### **Read Parquet Data**
 
-  Let's load Parquet data from ADLS and display the first 10 records:
+  Let's load Parquet data from **patientraw** shorcut and display the first 10 records:
+
+  ![Path of patientraw shortcut](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.3.1a4.jpg)
 
   ~~~python
-  # Read Parquet file into a DataFrame
-  df = spark.read.parquet("<your_adls_path>/*.parquet")
+  patient_shortcut_path = "Files/patientraw/"
 
-  # Show first 10 records
-  df.show(10, truncate=False)
+  # Read Parquet files into a DataFrame
+  patient_raw_df = spark.read.parquet(patient_shortcut_path)
+
+  patient_raw_df.printSchema()
+
+  # Show the contents of the DataFrame
+  patient_raw_df.show(truncate=False)
   ~~~
 
-  ### 1.3.2 Silver Layer: Cleaning and De-duplicating Data
+  ### 1.3.2 Silver Layer: Cleaning, De-duplicating, and Flattening Data
 
-  Now that you've loaded both JSON and Parquet data to Dataframe, let’s clean and flatten data from both the Order and Product tables and prepare them in the Silver Layer.
+Now that we've loaded both JSON and Parquet data into DataFrames, let's clean the data and flatten nested structures like arrays and structs in the Observations and Patient datasets to prepare them for the Silver Layer.
 
-  **Remove duplicates** from the orders dataframe and **cleaning** products dataframe
+To enable SQL queries on Spark DataFrames, we will create temporary views using .createOrReplaceTempView().
 
   ~~~python
-  from pyspark.sql import functions as F
-
-  # Remove duplicates based on all columns in the 'orders_df'
-  orders_df_cleaned = order_df.dropDuplicates()
-
-  # Show the cleaned data to verify
-  orders_df_cleaned.show(truncate=False)
-
-  # Filter out rows where ProductID or ProductName is null
-  filtered_products_df = product_df.filter(
-      (F.col("ProductID").isNotNull()) & (F.col("ProductName").isNotNull())
-  )
-
-  # Show the filtered data to verify
-  filtered_products_df.show(truncate=False)
+  observations_raw_df.createOrReplaceTempView("observations_raw_view")
+  patient_raw_df.createOrReplaceTempView("patient_raw_view")
   ~~~
+
+#### Flattening and Selecting Key Columns in the Silver Layer
+
+In the Silver Layer, we typically flatten the tables from the Bronze Layer while retaining important columns. Flattening helps normalize nested structures like arrays and structs, making the data easier to query and process.
+
+However, for simplicity in this lab, we will write an SQL query to extract only a few key columns from the `observations_raw_view`, rather than keeping all columns from the Bronze Layer.
+
+##### Flattening Arrays and Structs in Spark
+
+You can use the `EXPLODE()` function to flatten arrays and structs.
+
+- **Arrays**: Contain multiple values in a single column. Use `EXPLODE()` or `LATERAL VIEW EXPLODE()` to convert each element into a separate row.
+- **Structs**: Are nested fields within a column. Instead of creating new rows, extract individual fields as separate columns.
+
+##### Example: Extracting Struct Fields
+**Scenario**: The `name` column is a struct with `{family: "Doe", given: ["John"]}`.
+
+##### Output:
+| id  | last_name | first_name |
+|-----|:---------:|:----------:|
+| 1   | Doe       | John       |
+
+The struct fields (`family`, `given`) are extracted as separate columns.
+
+In `observations_raw_view`, since `category` is an array, we use `LATERAL VIEW OUTER EXPLODE(category)` to extract its elements, keeping null values if the array is empty.
+
+Below is the SQL query to flatten and extract key fields from the `observations_raw_view`:
+
+~~~sql
+%%sql
+
+SELECT
+    id,
+    resourceType,
+    status,
+    subject.reference AS subject_reference,
+    SPLIT(subject.reference, '/')[1] AS patient_id,
+    encounter.reference AS encounter_reference,
+    
+    -- Extract category code and display (first element of array)
+    category_struct.coding[0].code AS category_code,
+    category_struct.coding[0].display AS category_display,
+
+    -- Extract observation code details
+    code.coding[0].code AS observation_code,
+
+    -- Extract effective date
+    effectiveDateTime,
+
+    -- Extract value details (Quantity, CodeableConcept, String)
+    valueQuantity.value AS value_quantity,
+    valueQuantity.unit AS value_unit
+
+FROM observations_raw_view
+LATERAL VIEW OUTER EXPLODE(category) category_table AS category_struct
+~~~
+
+Next, we'll write a SQL query to extract essential columns from the patient_raw_view and flatten nested struct fields, such as name, using the EXPLODE() function. In the case of name, we will extract the first element from the given array.
+
+~~~sql
+%%sql
+
+SELECT 
+    p.id,
+    p.gender,
+    p.birthDate,
+    p.deceasedDateTime,
+
+    -- Flatten name details
+    name_array.family AS last_name,
+    name_array.given[0] AS first_name  -- Extract first element from array
+
+FROM patient_raw_view p
+LATERAL VIEW OUTER EXPLODE(p.name) name_table AS name_array
+~~~
+
+#### Create and Insert into Flattened Observations Table in the Silver Layer
+
+Next, we will create and insert data into a new observations_silver table in the Silver layer with a flattened schema. 
+
+This table will be stored in the silvercleaned lakehouse, so specifying as silvercleaned.dbo.observations_silver.
+
+~~~sql
+%%sql
+-- Ensure the Silver table exists (if not, create it)
+CREATE TABLE IF NOT EXISTS silvercleansed.dbo.observations_silver
+USING DELTA
+AS 
+SELECT
+    id,
+    resourceType,
+    status,
+    subject.reference AS subject_reference,
+    SPLIT(subject.reference, '/')[1] AS patient_id,
+    encounter.reference AS encounter_reference,
+    
+    -- Extract category code and display (first element of array)
+    category_struct.coding[0].code AS category_code,
+    category_struct.coding[0].display AS category_display,
+
+    -- Extract observation code details
+    code.coding[0].code AS observation_code,
+
+    -- Extract effective date
+    effectiveDateTime,
+
+    -- Extract value details (Quantity, CodeableConcept, String)
+    valueQuantity.value AS value_quantity,
+    valueQuantity.unit AS value_unit
+
+FROM observations_raw_view
+LATERAL VIEW OUTER EXPLODE(category) category_table AS category_struct;
+~~~
+
+#### Creating the Patient Silver Table in the Silvercleaned Lakehouse
+
+The following SQL code creates the `patient_silver` table in the `silvercleaned` lakehouse if it doesn't already exist:
+
+~~~sql
+%%sql
+
+CREATE TABLE IF NOT EXISTS silvercleaned.dbo.patient_silver (
+    id STRING,
+    gender STRING,
+    birthDate DATE,
+    deceasedDateTime TIMESTAMP,
+    last_name STRING,
+    first_name STRING
+)
+USING DELTA;
+~~~
+
+Writing a SQL code to flatten nested types and insert to the `patient_silver` table:
+
+~~~sql
+%%sql
+INSERT INTO silvercleansed.dbo.patient_silver
+
+SELECT 
+    p.id,
+    p.gender,
+    p.birthDate,
+    p.deceasedDateTime,
+
+    -- Flatten name details
+    name_struct.family AS last_name,
+    name_struct.given[0] AS first_name  -- Extract first element from array
+
+FROM patient_raw_view p
+LATERAL VIEW OUTER EXPLODE(p.name) name_table AS name_struct;
+~~~
+
 
 ### 1.3.3 Gold Layer: Creating a Denormalized Table
 
-  Perform an INNER JOIN on ProductID to get enriched Order Details and save in Gold Layer. 
+We will perform an **INNER JOIN** between the `Patient` and `Observations` tables to create and insert to a denormalized table in the Gold Layer. This table will be used for reporting and analytics.
 
-  ~~~python
-  gold_df = orders_df.join(products_df, "ProductID", "inner")
+  ~~~sql
+  %%sql
+-- Creating the Gold Layer with necessary patient and observation details
+CREATE TABLE IF NOT EXISTS golddenormalized.dbo.patientobservations_gold
+USING DELTA
+AS
+SELECT
+    o.id AS observation_id,
+    o.resourceType,
+    o.status,
+    o.patient_id,
+    o.encounter_reference,
+    
+    -- Patient details from the patient_silver table
+    p.gender,
+    p.birthDate,
+    p.deceasedDateTime,
+    p.last_name,
+    p.first_name,
+
+    -- Observation specific details
+    o.category_code,
+    o.category_display,
+    o.observation_code,
+    o.effectiveDateTime,
+    o.value_quantity,
+    o.value_unit
+
+FROM silvercleansed.dbo.observations_silver o
+JOIN silvercleansed.dbo.patient_silver p
+    ON o.patient_id = p.id;
   ~~~
+
+##### Select the Top 10 Patients with the Most Observations
+
+Next, let's query the top 10 patients who have the highest number of observations.
+
+~~~sql
+%%sql
+
+SELECT
+    patient_id,
+    gender,
+    COUNT(observation_id) AS number_of_observations
+FROM golddenormalized.dbo.patientobservations_gold
+GROUP BY
+    patient_id, gender
+ORDER BY
+    number_of_observations DESC
+LIMIT 10;
+~~~
 
 ---
 
@@ -309,77 +572,167 @@ This approach **optimizes resource usage and accelerates execution times**, enha
   - Choose between **Starter Pools vs Custom Pools** and understand the difference  
   - Discover how **Autoscaling** and **Dynamic Allocation** work  
 
-  [To be updated]
+To create a new environment
 
----
+You can add public or custom libraries if your Spark job requires. 
 
-### 1.6 Using `notebookutils` for Secure Access  [5 minutes]
-  - Access **Azure Key Vault (AKV)** securely within your notebooks
+- Choose between **Starter Pools vs Custom Pools** and understand the difference  
 
-  [To be updated]  
+1.5.1e
+
+- Discover how **Autoscaling** and **Dynamic Allocation** work
+
+  Autoscaling checks YARN pending resource metric (Pending Memory or Pending Cores) for scaling up/down. 
+
+  Dynamic allocation scales based on task backlog and executor idle time (whether executors are sitting idle for too long). 
+
+  [ add diagram]
 
 ---
 
 ### 🌟 Bonus - Spark Structured Streaming
 
 #### Read Streaming JSON Data
-In this Bonus section, we will walk through how to read streaming JSON data from Azure Data Lake Storage (ADLS) using Apache Spark's structured streaming capabilities. This method allows Spark to continuously read new JSON files as they arrive, while ignoring the files that have already been processed. It's especially useful for processing real-time data streams.
+In this section, we will walk through how to read streaming JSON data from a Shortcut to Azure Data Lake Storage (ADLS) using Apache Spark's structured streaming capabilities. This method allows Spark to continuously read new JSON files as they arrive, while ignoring the files that have already been processed. It’s especially useful for processing both historical and real-time data streams.
 
-1. **Define the Path to Your Data**: To begin, we specify the path to the JSON files stored in ADLS. The path includes a wildcard (*.json) to ensure that all JSON files in the specified directory are processed.
+1. **Define the Path to Your Data**: Start by specifying the Shortcut path to the JSON files stored in ADLS.
 
-2. **Set Up the Spark ReadStream**: With the file path defined, we use spark.readStream to start a streaming read operation. The option("multiline", "true") option ensures that Spark can correctly handle multi-line JSON files. Then, the .json() method reads the incoming JSON data from the specified path.
-
-    ~~~python
-    input_df = spark.readStream.option("multiline", "true").json(adls_path_json)
-    ~~~
-
-3. **Defining the Schema**: When working with streaming data, it’s important to define a schema to know the structure of the incoming data. In this case, we define two schemas:
-
-- Outer schema: Defines the top-level structure, which includes the json_data field (containing a JSON string).
-- Inner schema: Defines the actual data within the json_data field (which in this example contains fields like OrderID and Product).
+2. **Set Up the Spark ReadStream**: With the file path defined, use `spark.readStream` to initiate the streaming read operation. The `.json()` method reads the incoming JSON data from the specified path.
 
     ~~~python
-    outer_json_schema = StructType([
-        StructField("json_data", StringType(), True)
-    ])
+    input_df = spark.readStream.json(shortcut_path)
+    ~~~
 
-    inner_json_schema = StructType([
-        StructField("OrderID", StringType(), True),
-        StructField("Product", StringType(), True)
+3. **Defining the Schema**: When working with streaming data, it's crucial to define a schema to understand the structure of the incoming data. In this case, we define the schema as follows:
+
+    ~~~python
+    observations_schema = StructType([
+        StructField("id", StringType(), True),
+        StructField("resourceType", StringType(), True),
+        StructField("status", StringType(), True),
+        StructField("subject", StructType([  # Nested structure
+            StructField("reference", StringType(), True)
+        ]), True),
+        StructField("category", StructType([  # Nested structure
+            StructField("coding", StructType([  # Nested structure
+                StructField("code", StringType(), True),
+                StructField("display", StringType(), True)
+            ]), True)
+        ]), True),
+        StructField("code", StructType([  # Nested structure
+            StructField("coding", StructType([  # Nested structure
+                StructField("code", StringType(), True),
+                StructField("display", StringType(), True)
+            ]), True)
+        ]), True),
+        StructField("effectiveDateTime", StringType(), True),
+        StructField("valueQuantity", StructType([  # Nested structure
+            StructField("value", DoubleType(), True),
+            StructField("unit", StringType(), True)
+        ]), True)
     ])
     ~~~
-4. **Processing the Stream**: 
 
-      - We use spark.readStream with the schema outer_json_schema to ensure the incoming JSON is read according to the defined structure. The stream is read from the ADLS directory where the JSON files are stored.
+4. **Streaming with `availableNow` for Historical Data**: If you're processing historical data, you can use the `trigger(availableNow=True)` option to process all available data in one go. This will handle data that has already arrived, ensuring it’s processed immediately.
 
-      ~~~python
-      input_df = spark.readStream.schema(outer_json_schema).json(adls_path)
-      ~~~
-      - The next step is to parse the JSON data inside the json_data field. Using the from_json function, we transform the string of JSON data into a structured format using the inner_json_schema.
+    ~~~python
+    query = parsed_observations_df.writeStream \
+        .outputMode("append") \
+        .format("delta") \
+        .trigger(availableNow=True) \
+        .option("checkpointLocation", "<check_point_location>") \
+        .toTable("observations_streaming_silver")  # Save the stream to the Delta table
+    ~~~
 
-      ~~~python
-      parsed_df = input_df.withColumn("parsed_json", from_json(col("json_data"), inner_json_schema)) \
-                          .select("parsed_json.*")
-      ~~~
-This extracts the OrderID and Product fields from the json_data column.
+5. **Switching to Real-Time Data with a 5-second Trigger**: After processing historical data, you can switch to real-time data streaming by using `trigger(processingTime='5 seconds')`. This ensures that new data arriving every 5 seconds is processed immediately, enabling near real-time streaming.
 
-5. Define the process_batch Function to show the data in the batch for debugging and write the processed data to a Delta table.
+    ~~~python
+    query = parsed_observations_df.writeStream \
+        .outputMode("append") \
+        .format("delta") \
+        .trigger(processingTime='5 seconds') \
+        .option("checkpointLocation", "<check_point_location>") \
+        .toTable("observations_streaming_silver")  # Save the stream to the Delta table
+    ~~~
 
-      ~~~python
-      def process_batch(df, epoch_id):
-          df.show(truncate=False)
-          df.write.format("delta").mode("append").saveAsTable("orders1")
-      ~~~
-6. **Set Up the Streaming Query**: Use .foreachBatch to apply the process_batch function to each micro-batch. Configure checkpointing for fault tolerance.
-      ~~~python
-      query = parsed_df.writeStream \
-          .outputMode("append") \
-          .foreachBatch(process_batch) \
-          .option("checkpointLocation", "<your_adls_path>/jsonstreaming/checkpoints/") \
-          .start()
-      ~~~
+6. **Write the Data to Streaming Target**: Use .toTable to stream insert to target delta table. Ensure checkpointing is configured for fault tolerance.
+
+    ~~~python
+    query = parsed_observations_df.writeStream \
+        .outputMode("append") \
+        .format("delta") \
+        .trigger(processingTime='5 seconds') \
+        .option("checkpointLocation", "<check_point_location>") \
+        .toTable("observations_streaming_silver")  # Save the stream to the Delta table
+    ~~~
+
+By using `trigger(availableNow=True)` for historical data and `trigger(processingTime='5 seconds')` for real-time data, you can efficiently process both backlogged data and streaming data with Apache Spark.
 
 **Tip**: Don't forget to stop the stream once you're done testing, as it will continue running indefinitely.
+
+Here is the sample working code:
+
+~~~python
+from pyspark.sql.functions import from_json, col
+from pyspark.sql.types import StructType, StructField, StringType, DoubleType
+
+# Define schema for the expected JSON structure (based on observations data)
+observations_schema = StructType([
+    StructField("id", StringType(), True),
+    StructField("resourceType", StringType(), True),
+    StructField("status", StringType(), True),
+    StructField("subject", StructType([  # Nested structure
+        StructField("reference", StringType(), True)
+    ]), True),
+    StructField("category", StructType([  # Nested structure
+        StructField("coding", StructType([  # Nested structure
+            StructField("code", StringType(), True),
+            StructField("display", StringType(), True)
+        ]), True)
+    ]), True),
+    StructField("code", StructType([  # Nested structure
+        StructField("coding", StructType([  # Nested structure
+            StructField("code", StringType(), True),
+            StructField("display", StringType(), True)
+        ]), True)
+    ]), True),
+    StructField("effectiveDateTime", StringType(), True),
+    StructField("valueQuantity", StructType([  # Nested structure
+        StructField("value", DoubleType(), True),
+        StructField("unit", StringType(), True)
+    ]), True)
+])
+
+# Path to the observations JSON data (adjust as needed)
+observations_shortcut_path = "Files/observationsraw"
+
+# Read JSON data into a streaming DataFrame with schema specified
+observations_raw_df = spark.readStream.schema(observations_schema).json(observations_shortcut_path)
+
+# Print schema to confirm the structure
+observations_raw_df.printSchema()
+
+# Parse the raw data and select required fields
+parsed_observations_df = observations_raw_df.select(
+    "id", "resourceType", "status", "subject.reference", 
+    "category.coding.code", "category.coding.display", 
+    "effectiveDateTime", "valueQuantity.value", "valueQuantity.unit"
+)
+
+# Print the schema of parsed DataFrame
+parsed_observations_df.printSchema()
+
+# Write the micro-batch to a Delta table
+query = parsed_observations_df.writeStream \
+    .outputMode("append") \
+    .format("delta") \
+    .trigger(availableNow=True) \
+    .option("checkpointLocation", "abfss://d24c0aa4-e6b2-4571-8e9a-6ae82ebf926d@msit-onelake.dfs.fabric.microsoft.com/9308f974-121a-4491-9d8a-8dde47a9ce9b/Files/streamingcheckpoint/") \
+    .toTable("observations_streaming_silver")  # Save the stream to the Delta table
+
+# Await termination (to keep the stream running until all data is processed)
+query.awaitTermination()
+~~~
 
 ## 🎉 Wrapping Up the Exercise: Developing Spark Applications
 
