@@ -567,26 +567,75 @@ This approach **optimizes resource usage and accelerates execution times**, enha
 
 ---
 
-### 1.5 Configuring & Publishing Your Spark Environment [15 minutes] 
-  - Manage **libraries** and dependencies in the UI  
-  - Choose between **Starter Pools vs Custom Pools** and understand the difference  
-  - Discover how **Autoscaling** and **Dynamic Allocation** work  
+### 1.5 Configuring & Publishing Your Spark Environment (15 minutes)
 
-To create a new environment
+#### 🚀 Set Up Your Spark Environment with Ease!  
 
-You can add public or custom libraries if your Spark job requires. 
+In this lab, you'll explore how to configure and publish your Spark environment efficiently. By the end, you’ll know how to:  
 
-- Choose between **Starter Pools vs Custom Pools** and understand the difference  
+✅ Manage **libraries** and dependencies  
+✅ Choose between **Starter Pools vs Custom Pools**  
+✅ Leverage **Autoscaling & Dynamic Allocation** for optimal performance  
 
-1.5.1e
+---
 
-- Discover how **Autoscaling** and **Dynamic Allocation** work
+### 🔧 Step 1: Select or Create a Spark Environment  
 
-  Autoscaling checks YARN pending resource metric (Pending Memory or Pending Cores) for scaling up/down. 
+To get started, open the **Notebook** and click on the **Environment** dropdown, as shown below:  
 
-  Dynamic allocation scales based on task backlog and executor idle time (whether executors are sitting idle for too long). 
+![Selecting the environment](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.5.1a1.jpg)  
 
-  [ add diagram]
+If your Spark job requires additional libraries, you can **add public or custom libraries**:  
+
+![Adding custom libraries](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.5.1a.jpg)  
+
+Once you've made your changes, remember to **Save & Publish** for them to take effect.  
+
+---
+
+### ⚡ Step 2: Choose the Right Compute Pool  
+
+In **Fabric Spark**, you can choose between:  
+
+- **Starter Pools** (Pre-provisioned, always-on clusters for quick execution)  
+- **Custom Pools** (User-defined clusters with flexible scaling options)  
+
+#### ✨ Starter Pools  
+Starter pools allow you to run Spark within **seconds** without waiting for nodes to set up. These clusters are **always available**, dynamically scaling up based on job demands.  
+
+#### 🛠️ Custom Spark Pools  
+If you need more control, **Custom Pools** let you define the number and size of nodes 
+
+To customize or create a Spark pool, go to **Workspace Spark Settings** (admin access required). For this lab, we’ve already set up a **custom pool**.  
+
+📸 Screenshots for reference:  
+
+![Compute Selection](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.5.2a.jpg)  
+
+![Pool Configuration](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.5.2b.jpg)  
+
+![Finalize Settings](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.5.2c.jpg)  
+
+#### Optimize Application with Autoscaling & Dynamic Allocation  
+
+To ensure efficient resource usage, **Autoscaling** and **Dynamic Allocation** help manage compute resources dynamically.  
+
+#### 🔄 Autoscaling  
+- Automatically **scales up or down** based on **YARN pending resources** (Memory & CPU).  
+- Adjusts cluster size based on workload demand.  
+
+#### ⚙️ Dynamic Allocation  
+- Dynamically **adds or removes executors** based on  tasks backlog and executor idle time.  
+- Avoids over-provisioning and reduces idle resources.  
+
+    💡 **How It Works:**  
+    - You define **minimum and maximum nodes** for autoscaling.  
+    - Spark automatically adjusts nodes based on demand.  
+    - The system dynamically assigns executors **only when needed**, ensuring efficiency.  
+
+📸 Selecting Compute Pools:  
+
+![Pool Selection](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.5.3a.jpg)  
 
 ---
 
