@@ -3,11 +3,12 @@
 > 
 > [Back to Agenda](./../README.md#agenda) | [Back to Start Steps](../module-0-setup/start.md) | [Up next Exercise 2](./../exercise-2/exercise-2.md)
 > #### List of exercises:
-> * [Task 4.2 Leveraging the Native Execution Engine](#task-42-leveraging-the-native-execution-engine-5-min)
-> * [Task 4.3 Enabling Workload Appropriate Features](#task-43-enabling-workload-appropriate-features-8-min)
-> * [Task 4.5 Create Custom Spark Pool](#task-45-create-custom-spark-pool)
-> * [Task 4.6](#task-14-management-of-spark-sessions)
-> * [Task 4.7](#task-14-management-of-spark-sessions)
+> * [Task 2.2 Add Notebook into pipeline](#orchestrating-as-notebook-activity)
+> * [Task 2.3 Enable Notebook schedule on Notebook settings page](#23-enable-notebook-schedule-on-notebook-settings-page)
+> * [Task 2.4.1 Reference notebook via %run](#241-reference-notebook-via-run)
+> * [Task 2.4.2 Reference a notebook via ```notebookutils.notebook.run```](#242-reference-a-notebook-via-notebookutilsnotebookrun)
+> * [Task 2.4.3 2.4.3 Reference multi notebooks via ```notebookutils.notebook.runMultiple```](#243-reference-multi-notebooks-via-notebookutilsnotebookrunmultiple)
+> * [Task 2.5 Notebook resoures](#25-notebook-resources)
 
 # Module 2: Orchestrating Spark (Long, Miles)
 - Notebooks vs. SJDs
@@ -26,7 +27,7 @@ we will also explore how to use resource files to package code.
 # 2.2 Add notebook into pipeline
 The Notebook activity in pipeline allows you to run Notebook created in Microsoft Fabric. You can create a Notebook activity directly through the Fabric user interface. This article provides a step-by-step walkthrough that describes how to create a Notebook activity using the Data Factory user interface.
 
-[Orchestrating as Notebook Activity](https://learn.microsoft.com/en-us/fabric/data-factory/notebook-activity)
+## [Orchestrating as Notebook Activity](https://learn.microsoft.com/en-us/fabric/data-factory/notebook-activity)
 ![](./Add%20to%20pipeline.jpg)
 
 Select the Settings tab, select an existing notebook from the Notebook dropdown, and optionally specify any parameters to pass to the notebook.
@@ -52,13 +53,13 @@ For options:
 
 ```-c/--current```: This option ensures that the command always uses the current notebook’s built-in resources, even if the current notebook is referenced by other notebooks.
 
-## 2.4.1 Reference a notebook via [```notebookutils.notebook.run```](https://learn.microsoft.com/en-us/fabric/data-engineering/notebook-utilities#reference-a-notebook)
+## 2.4.2 Reference a notebook via [```notebookutils.notebook.run```](https://learn.microsoft.com/en-us/fabric/data-engineering/notebook-utilities#reference-a-notebook)
 This method references a notebook and returns its exit value. You can run nesting function calls in a notebook interactively or in a pipeline. The notebook being referenced runs on the Spark pool of the notebook that calls this function.
 
 ```notebookutils.notebook.run("notebook name", <timeoutSeconds>, <parameterMap>, <workspaceId>)```
 ![nbutils.run](./Reference%20notebook%20via%20nbutils.jpg)
 
-## 2.4.2 Reference multi notebooks via [```notebookutils.notebook.runMultiple```](https://learn.microsoft.com/en-us/fabric/data-engineering/notebook-utilities#reference-run-multiple-notebooks-in-parallel)
+## 2.4.3 Reference multi notebooks via [```notebookutils.notebook.runMultiple```](https://learn.microsoft.com/en-us/fabric/data-engineering/notebook-utilities#reference-run-multiple-notebooks-in-parallel)
 The method ```notebookutils.notebook.runMultiple()``` allows you to run multiple notebooks in parallel or with a predefined topological structure. The API is using a multi-thread implementation mechanism within a spark session, which means the reference notebook runs share the compute resources.
 ```notebookutils.notebook.runMultiple(["NotebookSimple", "NotebookSimple2"])```
 
