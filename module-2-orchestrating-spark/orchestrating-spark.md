@@ -1,4 +1,74 @@
+> [!NOTE]
+> Timebox: 60 minutes (20 minutes of content | 40 minutes of lab work)
+> 
+> [Back to Agenda](./../README.md#agenda) | [Back to Start Steps](../module-0-setup/start.md) | [Up next Exercise 2](./../exercise-2/exercise-2.md)
+> #### List of exercises:
+> * [Task 4.2 Leveraging the Native Execution Engine](#task-42-leveraging-the-native-execution-engine-5-min)
+> * [Task 4.3 Enabling Workload Appropriate Features](#task-43-enabling-workload-appropriate-features-8-min)
+> * [Task 4.5 Create Custom Spark Pool](#task-45-create-custom-spark-pool)
+> * [Task 4.6](#task-14-management-of-spark-sessions)
+> * [Task 4.7](#task-14-management-of-spark-sessions)
+
 # Module 2: Orchestrating Spark (Long, Miles)
 - Notebooks vs. SJDs
 - Orchestration patterns -> Pipelines vs. Run vs. RunMultiple vs. ThreadPools
 - packaging code (libraries, modules in resources folder)
+
+
+# Context
+In this exercise, we will explore how to orchestrate Spark workloads using Azure Data Factory Notebook Activity and Fabric Scheduler. And meanwhile, we provide multiple ways (NotebookUtils.run, RunMultiple, ThreadPools) to reference a notebook in your pipeline.
+we will also explore how to use resource files to package code.
+
+
+# 2.1 - Introduction & Key Performance Factors | 🕑 2:00 - 2:05 PM
+## 📌 Presentation (5 min.)
+- Why performance tuning?
+- Key areas of optimization:
+    1. Execution Engine
+    1. Zone and use case appropriate table features
+    1. Table Clustering
+    1. Compute Sizing
+    1. Query Optimization
+    1. Table Maintenance
+- Top 5 reasons for poor performance
+
+
+# 2.2 Add notebook into pipeline
+The Notebook activity in pipeline allows you to run Notebook created in Microsoft Fabric. You can create a Notebook activity directly through the Fabric user interface. This article provides a step-by-step walkthrough that describes how to create a Notebook activity using the Data Factory user interface.
+
+[Orchestrating as Azure Data Factory Notebook Activity](https://learn.microsoft.com/en-us/fabric/data-factory/notebook-activity)
+
+
+# 2.3 Enable Notebook schedule
+[Security context of running notebook](https://learn.microsoft.com/en-us/fabric/data-engineering/how-to-use-notebook#security-context-of-running-notebook)
+
+
+# 2.4 Reference Notebook
+
+We can reference another notebook within current notebook's context.
+
+## 2.4.1 reference notebook via [```%run```](https://learn.microsoft.com/en-us/fabric/data-engineering/author-execute-notebook#reference-run-a-notebook)
+The ```%run``` command also allows you to run Python or SQL files that are stored in the notebook’s built-in resources, so you can execute your source code files in notebook conveniently.
+
+```%run [-b/--builtin -c/--current] [script_file.py/.sql] [variables ...]```
+
+![pic](./Reference%20notebook%20via%20%25run.jpg)
+
+For options:
+
+```-b/--builtin```: This option indicates that the command finds and runs the specified script file from the notebook’s built-in resources.
+
+```-c/--current```: This option ensures that the command always uses the current notebook’s built-in resources, even if the current notebook is referenced by other notebooks.
+
+## 2.4.1 Reference a notebook via [```notebookutils.notebook.run```](https://learn.microsoft.com/en-us/fabric/data-engineering/notebook-utilities#reference-a-notebook)
+This method references a notebook and returns its exit value. You can run nesting function calls in a notebook interactively or in a pipeline. The notebook being referenced runs on the Spark pool of the notebook that calls this function.
+
+```notebookutils.notebook.run("notebook name", <timeoutSeconds>, <parameterMap>, <workspaceId>)```
+
+## 2.4.2 Reference multi notebooks via [```notebookutils.notebook.runMultiple```](https://learn.microsoft.com/en-us/fabric/data-engineering/notebook-utilities#reference-run-multiple-notebooks-in-parallel)
+The method ```notebookutils.notebook.runMultiple()``` allows you to run multiple notebooks in parallel or with a predefined topological structure. The API is using a multi-thread implementation mechanism within a spark session, which means the reference notebook runs share the compute resources.
+```notebookutils.notebook.runMultiple(["NotebookSimple", "NotebookSimple2"])```
+
+
+# 2.5 Notebook resources
+The notebook resource explorer provides a Unix-like file system to help you manage your folders and files. It offers a writeable file system space where you can store small-sized files, such as code modules, semantic models, and images. You can easily access them with code in the notebook as if you were working with your local file system.
