@@ -52,7 +52,7 @@ The ```%run``` command also allows you to run Python or SQL files that are store
 
 ```%run [-b/--builtin -c/--current] [script_file.py/.sql] [variables ...]```
 
-![pic](./Reference%20notebook%20via%20%25run.jpg)
+![magic run](./Reference%20notebook%20via%20magic%20run.jpg)
 
 For options:
 
@@ -64,11 +64,13 @@ For options:
 This method references a notebook and returns its exit value. You can run nesting function calls in a notebook interactively or in a pipeline. The notebook being referenced runs on the Spark pool of the notebook that calls this function.
 
 ```notebookutils.notebook.run("notebook name", <timeoutSeconds>, <parameterMap>, <workspaceId>)```
+![nbutils.run](./Reference%20notebook%20via%20nbutils.jpg)
 
 ## 2.4.2 Reference multi notebooks via [```notebookutils.notebook.runMultiple```](https://learn.microsoft.com/en-us/fabric/data-engineering/notebook-utilities#reference-run-multiple-notebooks-in-parallel)
 The method ```notebookutils.notebook.runMultiple()``` allows you to run multiple notebooks in parallel or with a predefined topological structure. The API is using a multi-thread implementation mechanism within a spark session, which means the reference notebook runs share the compute resources.
 ```notebookutils.notebook.runMultiple(["NotebookSimple", "NotebookSimple2"])```
 
+![nbutils.multirun](./Reference%20multi%20notebooks%20via%20nbutils.jpg)
 
 # 2.5 Notebook resources
 The notebook resource explorer provides a Unix-like file system to help you manage your folders and files. It offers a writeable file system space where you can store small-sized files, such as code modules, semantic models, and images. You can easily access them with code in the notebook as if you were working with your local file system.
