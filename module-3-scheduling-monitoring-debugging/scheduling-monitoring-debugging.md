@@ -3,13 +3,13 @@
 > Timebox: 60 minutes (20 minutes of content | 40 minutes of lab work)
 > 
 > [Back to Agenda](./../README.md#agenda) | [Back to Start Steps](../module-0-setup/start.md) | [Up next Exercise 2](./../exercise-2/exercise-2.md)
-> #### List of exercises:
+<!-- > #### List of exercises:
 > * [Task 2.2 Add Notebook into pipeline](#orchestrating-as-notebook-activity)
 > * [Task 2.3 Enable Notebook schedule on Notebook settings page](#23-enable-notebook-schedule-on-notebook-settings-page)
 > * [Task 2.4.1 Reference notebook via %run](#241-reference-notebook-via-run)
 > * [Task 2.4.2 Reference a notebook via ```notebookutils.notebook.run```](#242-reference-a-notebook-via-notebookutilsnotebookrun)
 > * [Task 2.4.3 2.4.3 Reference multi notebooks via ```notebookutils.notebook.runMultiple```](#243-reference-multi-notebooks-via-notebookutilsnotebookrunmultiple)
-> * [Task 2.5 Notebook resoures](#25-notebook-resources)
+> * [Task 2.5 Notebook resoures](#25-notebook-resources) -->
 
 # Module 3: Job Scheduling, Monitoring, and Debugging (Long, Anu)
 - Navigating Spark UI (for task skews and utilization, native execution, rolling logs for drive and executors)
@@ -22,14 +22,13 @@
 - Emit spark log/metrics to eventhub/blob storage
 
 
-# Context
+## Context
 Microsoft Fabric Spark monitoring is designed to offer a web-UI based experience with built-in rich capabilities for monitoring the progress and status of Spark applications in progress, browsing past Spark activities, analyzing and optimizing performance, and facilitating troubleshooting of failures. Multiple entry points are available for browsing, monitoring, and viewing Spark application details.
 
-## 
+## Preparation
 
 - upload the file ./online_retail.csv into your lakehouse
 - import your notebook: ./SparkMonitoring-2025.ipynb
-- 
 
 ## 3.1 Monitor hub
 The Monitor hub serves as a centralized portal for browsing Spark activities across items. At a glance, you can view in-progress Spark applications triggered from Notebooks, Spark Job Definitions, and Pipelines. You can also search and filter Spark applications based on different criteria and drill down to view more Spark execution details of a Spark application. From the Fabric portal, select Monitor from the navigation pane to open the Monitor hub.
