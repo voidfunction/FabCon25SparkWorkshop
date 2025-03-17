@@ -20,28 +20,20 @@ In this exercise, we will explore how to orchestrate Spark workloads using Azure
 we will also explore how to use resource files to package code.
 
 
-# 2.1 - Introduction & Key Performance Factors | 🕑 2:00 - 2:05 PM
+# 2.1 - Introduction & Key features
 ## 📌 Presentation (5 min.)
-- Why performance tuning?
-- Key areas of optimization:
-    1. Execution Engine
-    1. Zone and use case appropriate table features
-    1. Table Clustering
-    1. Compute Sizing
-    1. Query Optimization
-    1. Table Maintenance
-- Top 5 reasons for poor performance
-
 
 # 2.2 Add notebook into pipeline
 The Notebook activity in pipeline allows you to run Notebook created in Microsoft Fabric. You can create a Notebook activity directly through the Fabric user interface. This article provides a step-by-step walkthrough that describes how to create a Notebook activity using the Data Factory user interface.
 
-[Orchestrating as Azure Data Factory Notebook Activity](https://learn.microsoft.com/en-us/fabric/data-factory/notebook-activity)
+[Orchestrating as Notebook Activity](https://learn.microsoft.com/en-us/fabric/data-factory/notebook-activity)
+![](./Add%20to%20pipeline.jpg)
 
+Select the Settings tab, select an existing notebook from the Notebook dropdown, and optionally specify any parameters to pass to the notebook.
+![](./Pass%20parameters%20from%20Notebook%20activity%20.jpg)
 
-# 2.3 Enable Notebook schedule
-[Security context of running notebook](https://learn.microsoft.com/en-us/fabric/data-engineering/how-to-use-notebook#security-context-of-running-notebook)
-
+# 2.3 Enable Notebook schedule on Notebook settings page
+![](./Schedule%20Notebook.jpg)
 
 # 2.4 Reference Notebook
 
@@ -74,3 +66,5 @@ The method ```notebookutils.notebook.runMultiple()``` allows you to run multiple
 
 # 2.5 Notebook resources
 The notebook resource explorer provides a Unix-like file system to help you manage your folders and files. It offers a writeable file system space where you can store small-sized files, such as code modules, semantic models, and images. You can easily access them with code in the notebook as if you were working with your local file system.
+
+![nb.resources.operations](./notebook-resources-operations.gif)
