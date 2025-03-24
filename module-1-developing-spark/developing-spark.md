@@ -7,6 +7,8 @@ You have two ways to approach this lab:
 **Option 1:** Create a new Notebook and follow the step-by-step instructions.  
 **Option 2:** Download the pre-built Notebook [module-1-developing-spark/Lab 1 - Developing Spark Applications.ipynb](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/module-1-developing-spark/Lab%201%20-%20Developing%20Spark%20Applications.ipynb), run the code, and experiment with it.
 
+#### 📌 Presentation (5 min.)
+
 ## 🎯 What You'll Learn 
 
 By the end of this lab, you'll gain insights into:  
@@ -59,7 +61,7 @@ This layered approach ensures data is efficiently processed, transformed, and ma
 
 ---
 
-## 1.2 Notebook Development: Choosing the Right Interface [10 minutes]
+## 1.2 Notebook Development: Choosing the Right Interface (20 minutes)
 
 When developing your Spark applications interactvely, Microsoft Fabric Notebooks offer two flexible options:  
 - A **web-based interactive interface** (Fabric UI)  
@@ -368,7 +370,7 @@ By default, session timeout is 20 minutes. You can extend it while working on de
 
 ---
 
-## 1.3 Spark Basics: Reading, Transforming, and Writing Data with Bronze, Silver, and Gold Layers [20 minutes]
+## 1.3 Spark Basics: Reading, Transforming, and Writing Data with Bronze, Silver, and Gold Layers (20 minutes)
 
   ### 1.3.1 Bronze Layer: Load Raw Data into a **DataFrame (DF)**
 
@@ -666,7 +668,7 @@ LIMIT 10;
 
 ---
 
-### 1.4 Running & Managing Notebooks  [5 minutes]  
+### 1.4 Running & Managing Notebooks  (5 minutes)  
 
 #### 1.4.1 Execute Notebooks in Different Modes  
 
@@ -716,7 +718,7 @@ This approach **optimizes resource usage and accelerates execution times**, enha
 
 ---
 
-### 1.5 Configuring & Publishing Your Spark Environment (15 minutes)
+### 1.5 Configuring & Publishing Your Spark Environment (5 minutes)
 
 #### 🚀 Set Up Your Spark Environment with Ease!  
 
@@ -764,6 +766,8 @@ To customize or create a Spark pool, go to **Workspace Spark Settings** (admin a
 ![Pool Configuration](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.5.2b.jpg)  
 
 ![Finalize Settings](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.5.2c.jpg)  
+
+#### 📌 Presentation (5 min.)
 
 #### Optimize Application with Autoscaling & Dynamic Allocation  
 
