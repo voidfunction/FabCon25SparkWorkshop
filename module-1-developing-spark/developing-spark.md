@@ -186,7 +186,7 @@ Now, add a **Code cell** and enter the following **PySpark** code:
   df = spark.createDataFrame(data)
 
   # Display the DataFrame
-  df.show()
+  display(df)
   ~~~
 
 4. To execute a cell, simply click **Connect** and choose either:
@@ -212,6 +212,150 @@ You can change the kernel at the notebook level or cell level with:
 
 ![Language Support](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.2.1g.jpg)
 
+## 🔥 Challenge Yourself with PySpark!  
+
+Below is a PySpark code snippet that defines a list named `data`, which contains three rows:  
+
+- 🟢 **First row:** `id=1`, `name="Alice"`, `age=25`  
+- 🔵 **Second row:** `id=2`, `name="Bob"`, `age=30`  
+- 🟠 **Third row:** `id=3`, `name="Charlie"`, `age=35` 
+
+  ~~~python
+  # Import required libraries
+  %%pyspark
+    # Import required libraries
+    from pyspark.sql import Row
+
+    # Create a sample DataFrame with 3 records
+    data = [Row(id=1, name="Alice", age=25),
+            Row(id=2, name="Bob", age=30),
+            Row(id=3, name="Charlie", age=35)]
+  ~~~
+
+  ## 💡 Your Task:
+Write a PySpark code snippet to:  
+1️⃣ Create a DataFrame from the data.  
+2️⃣ Display all the records in the DataFrame.  
+3️⃣ Print the schema of the DataFrame.  
+
+🚀 **Think you got this? Give it a try!**  
+
+🔍 **Hint:** You need to use `spark.createDataFrame()` to convert `data` into a DataFrame.  
+
+<details>
+  <summary><strong>🔑 Answer:</strong> Click to reveal</summary>
+
+~~~python
+# Create a DataFrame from the data
+df = spark.createDataFrame(data)
+
+# Display the DataFrame
+display(df)
+
+# Print the Schema of the Dataframe
+df.printSchema()
+~~~
+  
+</details>
+
+## 🚀 Scala Spark Challenge!  
+
+Here is the equivalent code in **Scala Spark**.  
+
+### 📝 **Your Task:**  
+To run the Scala code, use the `%%spark` magic command like below.  
+
+📌 **Challenge:** Modify the code to **pass a static schema** instead of using schema inference.  
+
+🔹 **Step 1:** Run the following code below.  
+🔹 **Step 2:** Copy and Modify the code in a new cell to define a **manual schema** instead of inferring it.  
+
+💡 **Hint:** Use `StructType` and `StructField` to define the schema explicitly.  
+
+---
+
+### ✅ **Run this code to Start!** 
+
+~~~scala
+%%spark
+import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.Encoders
+
+
+// Create sample data
+val data = Seq(
+  Person(1, "Alice", 25),
+  Person(2, "Bob", 30),
+  Person(3, "Charlie", 35)
+)
+
+// Convert to DataFrame with inferred schema
+val df = spark.createDataFrame(data)
+
+// Show DataFrame
+display(df)
+~~~
+
+Now, Copy and Modify the code in a new cell to define a **manual schema** instead of inferring it. 
+
+<details>
+  <summary><strong>🔑 Answer:</strong> Click to reveal</summary>
+
+~~~scala
+%%spark
+import org.apache.spark.sql.Row
+import org.apache.spark.sql.types.{IntegerType, StringType, StructField, StructType}
+
+// Define schema
+val schema = StructType(Seq(
+  StructField("id", IntegerType, nullable = false),
+  StructField("name", StringType, nullable = false),
+  StructField("age", IntegerType, nullable = false)
+))
+
+// Create sample data
+val data = Seq(
+  Row(1, "Alice", 25),
+  Row(2, "Bob", 30),
+  Row(3, "Charlie", 35)
+)
+
+// Create DataFrame
+val df = spark.createDataFrame(spark.sparkContext.parallelize(data), schema)
+
+display(df)
+
+~~~
+</details> 
+
+## 🎯 **Challenge: Spark SQL Edition!**
+
+Want to try your hand at Spark SQL? It’s time to switch gears and use SQL to achieve the same goal! 😎
+
+### **Here’s what you need to do:**
+
+Instead of using PySpark code, you’ll use the `%%sql` magic command to create a **temporary view** and run SQL queries.
+
+🔥 **Step 1**: Run the SQL below to create a temporary view and insert data.
+
+🔥 **Step 2**: Run this SQL query to select all records from the people view.
+
+<details>
+  <summary><strong>🔑 Answer:</strong> Click to reveal</summary>
+
+~~~sql
+
+%%sql
+
+CREATE OR REPLACE TEMP VIEW people AS
+SELECT 1 AS id, 'Alice' AS name, 25 AS age UNION ALL
+SELECT 2 AS id, 'Bob' AS name, 30 AS age UNION ALL
+SELECT 3 AS id, 'Charlie' AS name, 35 AS age;
+
+SELECT * FROM people
+
+~~~
+</details> 
 
 7. **Extending Session Timeout**:
 By default, session timeout is 20 minutes. You can extend it while working on development. To extend session expiry, click on the Session Ready status. It will display session information, and you can click reset and add time.
@@ -271,7 +415,7 @@ By default, session timeout is 20 minutes. You can extend it while working on de
 
   observations_raw_df.printSchema()
 
-  observations_raw_df.show(truncate=False)
+  display(observations_raw_df)
   ~~~
 
   **printSchema()**: Prints the schema of the DataFrame, giving you an overview of the data structure.
@@ -293,7 +437,7 @@ By default, session timeout is 20 minutes. You can extend it while working on de
   patient_raw_df.printSchema()
 
   # Show the contents of the DataFrame
-  patient_raw_df.show(truncate=False)
+  display(patient_raw_df)
   ~~~
 
   ### 1.3.2 Silver Layer: Cleaning, De-duplicating, and Flattening Data
@@ -307,28 +451,49 @@ To enable SQL queries on Spark DataFrames, we will create temporary views using 
   patient_raw_df.createOrReplaceTempView("patient_raw_view")
   ~~~
 
+  #### Understanding explode() and Accessing Structs in Spark
+In Spark, the explode() function is designed specifically to work with arrays. If you have a column that is a struct, you cannot use explode() directly. Instead, you can access its fields by using dot notation.
+
+For example, column encounter is a struct, you can access its field reference like this:
+
+~~~sql
+SELECT encounter.reference FROM observations_raw_view;
+~~~
+
+To flatten an array, you can use the explode() function. 
+
+But what if you have an array of structs? To flatten and access an array of structs, you can use the LATERAL VIEW EXPLODE() combination.
+
+For example, to explode the category array and access its coding field, use:
+
+~~~sql
+SELECT category_exploded.coding
+FROM observations_raw_view
+LATERAL VIEW EXPLODE(category) AS category_exploded;
+~~~
+This method allows you to break down arrays of complex types, like structs, into individual rows—making your data easier to work with.
+
+To access fields inside Struct, run this:
+
+~~~sql
+%%sql
+SELECT encounter.reference FROM observations_raw_view;
+~~~
+
+To flatten and access fields inside Arrays of Struct, run this:
+
+~~~sql
+%%sql
+SELECT category_exploded.coding FROM observations_raw_view
+LATERAL VIEW EXPLODE(category) AS category_exploded;
+~~~
+
+
 #### Flattening and Selecting Key Columns in the Silver Layer
 
 In the Silver Layer, we typically flatten the tables from the Bronze Layer while retaining important columns. Flattening helps normalize nested structures like arrays and structs, making the data easier to query and process.
 
 However, for simplicity in this lab, we will write an SQL query to extract only a few key columns from the `observations_raw_view`, rather than keeping all columns from the Bronze Layer.
-
-##### Flattening Arrays and Structs in Spark
-
-You can use the `EXPLODE()` function to flatten arrays and structs.
-
-- **Arrays**: Contain multiple values in a single column. Use `EXPLODE()` or `LATERAL VIEW EXPLODE()` to convert each element into a separate row.
-- **Structs**: Are nested fields within a column. Instead of creating new rows, extract individual fields as separate columns.
-
-##### Example: Extracting Struct Fields
-**Scenario**: The `name` column is a struct with `{family: "Doe", given: ["John"]}`.
-
-##### Output:
-| id  | last_name | first_name |
-|-----|:---------:|:----------:|
-| 1   | Doe       | John       |
-
-The struct fields (`family`, `given`) are extracted as separate columns.
 
 In `observations_raw_view`, since `category` is an array, we use `LATERAL VIEW OUTER EXPLODE(category)` to extract its elements, keeping null values if the array is empty.
 
@@ -567,26 +732,75 @@ This approach **optimizes resource usage and accelerates execution times**, enha
 
 ---
 
-### 1.5 Configuring & Publishing Your Spark Environment [15 minutes] 
-  - Manage **libraries** and dependencies in the UI  
-  - Choose between **Starter Pools vs Custom Pools** and understand the difference  
-  - Discover how **Autoscaling** and **Dynamic Allocation** work  
+### 1.5 Configuring & Publishing Your Spark Environment (15 minutes)
 
-To create a new environment
+#### 🚀 Set Up Your Spark Environment with Ease!  
 
-You can add public or custom libraries if your Spark job requires. 
+In this lab, you'll explore how to configure and publish your Spark environment efficiently. By the end, you’ll know how to:  
 
-- Choose between **Starter Pools vs Custom Pools** and understand the difference  
+✅ Manage **libraries** and dependencies  
+✅ Choose between **Starter Pools vs Custom Pools**  
+✅ Leverage **Autoscaling & Dynamic Allocation** for optimal performance  
 
-1.5.1e
+---
 
-- Discover how **Autoscaling** and **Dynamic Allocation** work
+### 🔧 Step 1: Select or Create a Spark Environment  
 
-  Autoscaling checks YARN pending resource metric (Pending Memory or Pending Cores) for scaling up/down. 
+To get started, open the **Notebook** and click on the **Environment** dropdown, as shown below:  
 
-  Dynamic allocation scales based on task backlog and executor idle time (whether executors are sitting idle for too long). 
+![Selecting the environment](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.5.1a1.jpg)  
 
-  [ add diagram]
+If your Spark job requires additional libraries, you can **add public or custom libraries**:  
+
+![Adding custom libraries](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.5.1a.jpg)  
+
+Once you've made your changes, remember to **Save & Publish** for them to take effect.  
+
+---
+
+### ⚡ Step 2: Choose the Right Compute Pool  
+
+In **Fabric Spark**, you can choose between:  
+
+- **Starter Pools** (Pre-provisioned, always-on clusters for quick execution)  
+- **Custom Pools** (User-defined clusters with flexible scaling options)  
+
+#### ✨ Starter Pools  
+Starter pools allow you to run Spark within **seconds** without waiting for nodes to set up. These clusters are **always available**, dynamically scaling up based on job demands.  
+
+#### 🛠️ Custom Spark Pools  
+If you need more control, **Custom Pools** let you define the number and size of nodes 
+
+To customize or create a Spark pool, go to **Workspace Spark Settings** (admin access required). For this lab, we’ve already set up a **custom pool**.  
+
+📸 Screenshots for reference:  
+
+![Compute Selection](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.5.2a.jpg)  
+
+![Pool Configuration](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.5.2b.jpg)  
+
+![Finalize Settings](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.5.2c.jpg)  
+
+#### Optimize Application with Autoscaling & Dynamic Allocation  
+
+To ensure efficient resource usage, **Autoscaling** and **Dynamic Allocation** help manage compute resources dynamically.  
+
+#### 🔄 Autoscaling  
+- Automatically **scales up or down** based on **YARN pending resources** (Memory & CPU).  
+- Adjusts cluster size based on workload demand.  
+
+#### ⚙️ Dynamic Allocation  
+- Dynamically **adds or removes executors** based on  tasks backlog and executor idle time.  
+- Avoids over-provisioning and reduces idle resources.  
+
+    💡 **How It Works:**  
+    - You define **minimum and maximum nodes** for autoscaling.  
+    - Spark automatically adjusts nodes based on demand.  
+    - The system dynamically assigns executors **only when needed**, ensuring efficiency.  
+
+📸 Selecting Compute Pools:  
+
+![Pool Selection](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.5.3a.jpg)  
 
 ---
 
