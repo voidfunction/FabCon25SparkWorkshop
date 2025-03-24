@@ -473,22 +473,6 @@ LATERAL VIEW EXPLODE(category) AS category_exploded;
 ~~~
 This method allows you to break down arrays of complex types, like structs, into individual rows—making your data easier to work with.
 
-To access fields inside Struct, run this:
-
-~~~sql
-%%sql
-SELECT encounter.reference FROM observations_raw_view;
-~~~
-
-To flatten and access fields inside Arrays of Struct, run this:
-
-~~~sql
-%%sql
-SELECT category_exploded.coding FROM observations_raw_view
-LATERAL VIEW EXPLODE(category) AS category_exploded;
-~~~
-
-
 #### Flattening and Selecting Key Columns in the Silver Layer
 
 In the Silver Layer, we typically flatten the tables from the Bronze Layer while retaining important columns. Flattening helps normalize nested structures like arrays and structs, making the data easier to query and process.
