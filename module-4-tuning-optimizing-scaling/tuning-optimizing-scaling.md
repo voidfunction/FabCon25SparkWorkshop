@@ -18,24 +18,13 @@ In this exercise, we will explore how to tune, optimize, and scale Fabric Spark 
 ## 📌 Presentation (5 min.)
 - Why performance tuning?
 - Key areas of optimization:
-    1. Execution Engine
-    1. Zone and use case appropriate table features
-    1. Table Clustering
-    1. Compute Sizing
-    1. Query Optimization
-    1. Table Maintenance
-- Top 5 reasons for poor performance
+- Top 10 reasons for poor performance
 
 # 4.2 - Native Execution Engine | 🕑 2:05 - 2:10 PM
 ## 📌 Presentation (5 min.)
-- What is the Native Execution Engine (NEE)?
-- Performance benchmarks: NEE vs. Spark on JVM
-- How to enable / disable NEE in Fabric
 
 ## 🛠️ Task 4.2 - Leveraging the Native Execution Engine (5 min.)
-1. Enable NEE
-1. Rerun cell that _________ (PENDING the data task from module 1)
-1. Verify that NEE has been leveraged in Spark UI
+
 
 # 4.3 - Optimizing Zone and Use Case Appropriate Table Features | 🕑 2:15 - 2:30 PM
 ## 📌 Presentation (7 min)
@@ -60,7 +49,6 @@ In this exercise, we will explore how to tune, optimize, and scale Fabric Spark 
 
 # 4.5 - Compute Sizing | 🕑 2:35 - 2:45 PM
 ## 📌 Presentation (5 min)
-## 🛠️ Task 4.5 - Create Custom Spark Pool (5 min)
 - _start custom pool in prior task_
 - switch to using larger compute and process a large job (showcase power of Spark)
 
@@ -73,7 +61,7 @@ In this exercise, we will explore how to tune, optimize, and scale Fabric Spark 
 
 # 4.7 - Table Maintenance | 🕑 2:35 - 2:45 PM
 ## 📌 Presentation (5 min)
-## 🛠️ Task 4.5 - Create Custom Spark Pool (5 min)
+## 🛠️ Task 4.7 - Running Table Maintenance Operations (5 min)
 - Run function to evaluate count of compacted vs. uncompacted files
 - Enable auto-compaction
 - Perform write into table
@@ -87,3 +75,21 @@ history_df = spark.sql("DESCRIBE HISTORY dbo.table_with_ac_enabled")
       .filter(history_df.operationParameters.auto == "true")
   display(filtered_history)
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
