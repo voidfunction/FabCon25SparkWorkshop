@@ -12,28 +12,13 @@ You have two ways to approach this lab:
 ## 🎯 What You'll Learn 
 
 By the end of this lab, you'll gain insights into:  
-
-#### <span style="color:blue;">1.1 Understanding the Medallion Architecture</span>
-
-#### <span style="color:blue;">1.2 Notebook Development: Choosing the Right Environment</span>
-Compare different development environments:
-- **1.2.1** **Fabric UI** vs **VS Code Desktop** vs **VS Code Web**
-- **1.2.2** Understand the differences between **Markdown** and **Code Cells**
-
-#### <span style="color:blue;">1.3 Spark Basics: Reading, Transforming, and Writing Data</span>
-- **1.3.1** Load data into a **DataFrame (DF)**
-- **1.3.2** Apply **transformations** and write results efficiently
-
-#### <span style="color:blue;">1.4 Running & Managing Notebooks</span>
-- **1.4.1** Execute your notebooks in different modes: **Standard Session** vs **High Concurrency (HC) Session**
-
-#### <span style="color:blue;">1.5 Configuring & Publishing Your Spark Environment</span>
-- **1.5.1** Manage **libraries** and dependencies in the UI
-- **1.5.2** Choose between **Starter Pools** vs **Custom Pools** and understand the difference
-- **1.5.3** Discover how **Autoscaling** and **Dynamic Allocation** work
-
-#### <span style="color:blue;">1.6 Using `notebookutils` for Secure Access</span>
-- **1.6.1** Access **Azure Key Vault (AKV)** securely within your notebooks
+- The basics of how Spark works
+- The _Medallion_ architecture
+- Development environments: Fabric UI, VS Code Desktop, and VS Code Web
+- The differences between Markdown and Code Cells
+- How to read, transform, and write data using Spark DataFrames
+- Running notebooks in Standard and High Concurrency modes
+- Spark Environments: manage libraries, choose pools, and explore autoscaling
 
 ---
 
@@ -56,6 +41,13 @@ In this lab, we'll implement the **Medallion Architecture**, a structured approa
   The choice depends on your use case:
   - Denormalized tables are best for performance and ease of use in reporting.
   - Fact and dimension tables provide flexibility and are useful for more complex analytical models. 
+
+**However, there is no single correct interpretation of the Medallion layers. Organizations decide the architecture based on their specific data needs:
+- Some organizations introduce more than three layers to support additional transformations or governance requirements.
+- Some use Bronze for Delta storage, treating Silver as a logical layer with views rather than a separate physical storage layer.
+Ultimately, the goal is to create value from data while ensuring logical organization of transformations to support replayability, comprehensive auditing, and scalable data consumption at the required level of cleanliness.**
+
+![MEDALLION LAYERS] https://learn.microsoft.com/en-us/fabric/onelake/media/onelake-medallion-lakehouse-architecture/onelake-medallion-lakehouse-architecture-example.png
 
 This layered approach ensures data is efficiently processed, transformed, and made ready for analysis. 🚀  
 
@@ -280,23 +272,22 @@ To run the Scala code, use the `%%spark` magic command like below.
 
 ~~~scala
 %%spark
-import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.Encoders
-
-
-// Create sample data
+import org.apache.spark.sql.Row
+import org.apache.spark.sql.types._
+ 
 val data = Seq(
-  Person(1, "Alice", 25),
-  Person(2, "Bob", 30),
-  Person(3, "Charlie", 35)
+  (1, "Alice", 25),
+  (2, "Bob", 30),
+  (3, "Charlie", 35)
 )
-
-// Convert to DataFrame with inferred schema
-val df = spark.createDataFrame(data)
-
+ 
+val df = spark.createDataFrame(data).toDF("id", "name", "age")
+ 
 // Show DataFrame
 display(df)
 ~~~
+
+The toDF() method in Spark is a convenience method that allows you to easily convert a collections (such as a Seq, List, or RDD) into a DataFrame and assign column names.
 
 Now, Copy and Modify the code in a new cell to define a **manual schema** instead of inferring it. 
 
