@@ -27,17 +27,15 @@ Unlock the full potential of Apache Spark in Microsoft Fabric with this comprehe
 > 
 > 10:45 am - 11:45 pm - [Module 2 - Orchestrating Spark](./module-2-orchestrating-spark/orchestrating-spark.md)
 > 
-> 11:45 am - 12:45 pm - Lunch Break
+> 12:00 am - 01:00 pm - Lunch Break
 > 
-> 12:45 pm - 01:45 pm - [Module 3 - Job Scheduling, Monitoring, and Debugging](./module-3-scheduling-monitoring-debugging/scheduling-monitoring-debugging.md)
-> 
-> 01:45 pm - 02:00 pm - Afternoon Break
+> 01:00 pm - 02:00 pm - [Module 3 - Job Scheduling, Monitoring, and Debugging](./module-3-scheduling-monitoring-debugging/scheduling-monitoring-debugging.md)
 > 
 > 02:00 pm - 03:00 pm - [Module 4 - Performance Tuning, Optimizing, and Scaling](./module-4-tuning-optimizing-scaling/tuning-optimizing-scaling.md)
 >
-> 03:00 pm - 03:15 pm - Afternoon Break 2
+> 03:00 pm - 03:15 pm - Afternoon Break
 > 
-> 03:15 pm - 04:15 pm - [Module 5 - CICD / Misc. (content ONLY, no lab)](module-5-cicd-misc/cicd-misc.md)
+> 03:15 pm - 03:45 pm - [Module 5 - CICD / Misc. (content ONLY, no lab)](module-5-cicd-misc/cicd-misc.md)
 > 
-> 04:15 pm - 05:00 pm - Q&A
+> 03:45 pm - 04:15 pm - Q&A
 >
