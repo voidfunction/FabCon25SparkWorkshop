@@ -11,14 +11,13 @@
 > * [Task 2.4.3 2.4.3 Reference multi notebooks via ```notebookutils.notebook.runMultiple```](#243-reference-multi-notebooks-via-notebookutilsnotebookrunmultiple)
 > * [Task 2.5 Notebook resoures](#25-notebook-resources) -->
 
-# Module 3: Job Scheduling, Monitoring, and Debugging (Long, Anu)
+# Module 3: Job Scheduling, Monitoring, and Debugging
 - Navigating Spark UI (for task skews and utilization, native execution, rolling logs for drive and executors)
 - Spark monitoring UI (resource usage, cucurrent job analysis,  snapshot of pipeline, HC mode, in progress job, nbutils)
 - Notebook contextual monitoring: https://learn.microsoft.com/en-us/fabric/data-engineering/spark-monitor-debug
 
 - Live application debugging (print statements, logging, breakpoints, getNumPartitions, etc.)
 - Monitoring for HC (map jobs to notebook, REPL level log)
-- public Monitoring api (?)
 - Emit spark log/metrics to eventhub/blob storage
 
 
@@ -27,8 +26,8 @@ Microsoft Fabric Spark monitoring is designed to offer a web-UI based experience
 
 ## Preparation
 
-- upload the file ./online_retail.csv into your lakehouse
-- import your notebook: ./SparkMonitoring-2025.ipynb
+- upload the file [./online_retail.csv](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/module-3-scheduling-monitoring-debugging/online_retail.csv) into your lakehouse
+- import this notebook: [./SparkMonitoring-2025.ipynb](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/module-3-scheduling-monitoring-debugging/SparkMonitoring-2025.ipynb)
 
 ## 3.1 Monitor hub
 The Monitor hub serves as a centralized portal for browsing Spark activities across items. At a glance, you can view in-progress Spark applications triggered from Notebooks, Spark Job Definitions, and Pipelines. You can also search and filter Spark applications based on different criteria and drill down to view more Spark execution details of a Spark application. From the Fabric portal, select Monitor from the navigation pane to open the Monitor hub.
