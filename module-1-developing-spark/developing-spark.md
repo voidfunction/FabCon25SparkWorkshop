@@ -47,7 +47,7 @@ In this lab, we'll implement the **Medallion Architecture**, a structured approa
 - Some use Bronze for Delta storage, treating Silver as a logical layer with views rather than a separate physical storage layer.
 Ultimately, the goal is to create value from data while ensuring logical organization of transformations to support replayability, comprehensive auditing, and scalable data consumption at the required level of cleanliness.**
 
-![MEDALLION LAYERS] https://learn.microsoft.com/en-us/fabric/onelake/media/onelake-medallion-lakehouse-architecture/onelake-medallion-lakehouse-architecture-example.png
+![MEDALLION LAYERS] (https://learn.microsoft.com/en-us/fabric/onelake/media/onelake-medallion-lakehouse-architecture/onelake-medallion-lakehouse-architecture-example.png)
 
 This layered approach ensures data is efficiently processed, transformed, and made ready for analysis. 🚀  
 
@@ -68,24 +68,24 @@ The **Fabric UI Notebook** is the easiest way to get started—no setup required
 #### How to Create a Notebook in Fabric UI  
 1. Click the **Fabric logo** in the bottom-left corner of the screen.
 
-![Fabric UI](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.2.1a.jpg)  
+![Fabric UI](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.2.1a.jpg?raw=true)  
 
 2. You'll see options for **Fabric** and **Power BI**—select **Fabric**.  
 
-![Select Fabric in the Option](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.2.1b.jpg) 
+![Select Fabric in the Option](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.2.1b.jpg?raw=true) 
 
 3. Choose your **workspace**.  Click **New Item** → **Notebook** to create a new notebook. 
 
-![Creating a new Notebook](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.2.1c.jpg) 
+![Creating a new Notebook](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.2.1c.jpg?raw=true) 
 
 Alternatively, if you're importing a pre-built Notebook, click on import.
 
-![Importing Notebook](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.1a.jpg)
+![Importing Notebook](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.1a.jpg?raw=true)
 
 
 4. Click next to the **Notebook icon** to rename your notebook.  
 
-![Renaming a Notebook](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.2.1d.jpg) 
+![Renaming a Notebook](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.2.1d.jpg?raw=true) 
 
 That's it! You're ready to start coding in Spark in Fabric Notebook ! ✨  
 
@@ -97,35 +97,35 @@ You can integrate with Visual studio desktop or web. For this lab, we will set u
 
 Navigate to https://vscode.dev in your browser.
 
-![vscode.dev](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.1b.jpg) 
+![vscode.dev](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.1b.jpg?raw=true) 
 
 Select the Extensions icon in the left navigation bar.
 
-![Fabric Engineering Extension](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.1c.jpg) 
+![Fabric Engineering Extension](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.1c.jpg?raw=true) 
 
 Search for Fabric Data Engineering and select the Fabric Data Engineering VS Code - Remote pre-release
 
-![Fabric Engineering Extension](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.1d.jpg) 
+![Fabric Engineering Extension](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.1d.jpg?raw=true) 
 
 click Install.
 
-![Installing Fabric Engineering Extension](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.1e.jpg) 
+![Installing Fabric Engineering Extension](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.1e.jpg?raw=true) 
 
 #### 2. Open the Notebook with VS Code Web
 
 Open your current notebook in the VS Code for the Web experience by clicking the Open in VS Code(Web) button in the notebook authoring page in the Fabric portal.
 
-![Open Notebook with VS Code Web](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.2b.jpg) 
+![Open Notebook with VS Code Web](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.2b.jpg?raw=true) 
 
 select Synapse VS Code -Remote as the kernel and then select Synapse PySpark.
 
-![Selecting Kernel](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.2c.jpg) 
+![Selecting Kernel](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.2c.jpg?raw=true) 
 
-![Selecting Kernel](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.2d.jpg) 
+![Selecting Kernel](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.2d.jpg?raw=true) 
 
 If configurely correctly, you will see Syapse PySpark in the selected kernel as shown here
 
-![Selected Kernel](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.2e.jpg) 
+![Selected Kernel](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.2e.jpg?raw=true) 
 
 If you're have a new notebook, you can test execution by adding a simple command such as:
 
@@ -135,9 +135,9 @@ print(5)
 
 Then execute the cell. You can update a cell and ctrl + s to save the work. 
 
-![Selected Kernel](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.2f.jpg) 
+![Selected Kernel](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.2f.jpg?raw=true) 
 
-![Updating Notebook](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.2g.jpg) 
+![Updating Notebook](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.2g.jpg?raw=true) 
 
 ***Note**: Let's continue doing our labs in Notebook in Fabric UI.*
 
@@ -146,7 +146,7 @@ In Fabric Notebook, you can use Markdown and Code cells to enhance your developm
 
 1. To insert a new Markdown or Code cell, hover above or below an existing one. You'll see options to add either a Markdown or Code cell—simply select the type you need!
 
-![Insert a Markdown](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.2.1e.jpg) 
+![Insert a Markdown](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.2.1e.jpg?raw=true) 
 
 Lets try this with a sample Spark code and add the context in the Markdown. 
 
@@ -187,11 +187,11 @@ Now, add a **Code cell** and enter the following **PySpark** code:
    - **Run All** to execute all cells in the notebook, or
    - **Run** (located on the left of the cell) to run a specific cell only.
 
-![Executing Cells](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.2.1f.jpg)
+![Executing Cells](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.2.1f.jpg?raw=true)
 
 5. After running a cell, you'll see the **status** and **results** displayed below the respective cells.
 
-![Results Display](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.2.1g.jpg)
+![Results Display](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.2.1g.jpg?raw=true)
 
 💡 *Click on Spark Jobs, Resources, and Log to dive deeper into the run details. You’ll explore these in the upcoming labs.*
 
@@ -204,7 +204,7 @@ You can change the kernel at the notebook level or cell level with:
 - %%pyspark for PySpark.
 - %%sql for Spark SQL.
 
-![Language Support](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.2.1g.jpg)
+![Language Support](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.2.1g.jpg?raw=true)
 
 ## 🔥 Challenge Yourself with PySpark!  
 
@@ -353,7 +353,7 @@ SELECT * FROM people
 7. **Extending Session Timeout**:
 By default, session timeout is 20 minutes. You can extend it while working on development. To extend session expiry, click on the Session Ready status. It will display session information, and you can click reset and add time.
 
-![Session Timeout](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.3.1b.jpg)
+![Session Timeout](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.3.1b.jpg?raw=true)
 
 💡**Note**: The Session Ready icon will only be visible if a session is currently running 
 
@@ -371,7 +371,7 @@ By default, session timeout is 20 minutes. You can extend it while working on de
 
   To attach **bronzerawdata** lakehouse to the Notebook, click +Lakehouses and select the bronzerawdata in existing Lakehouses with schema. 
 
-  ![Attaching Lakehouse](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.3.1a1.jpg)
+  ![Attaching Lakehouse](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.3.1a1.jpg?raw=true)
 
   In Spark, you can load data into a DataFrame using the `spark.read()` method. This allows you to read from a variety of source formats such as CSV, JSON, Parquet, Avro, ORC, Delta, and many others. 
   
@@ -379,7 +379,7 @@ By default, session timeout is 20 minutes. You can extend it while working on de
 
   In this lab, we'll focus on reading **Parquet** files and **streaming JSON** files. We will read the shortcuts observationsraw (JSON files) and patientraw (Parquet files). 
 
-    ![Files in Lakehouse](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.3.1a2.jpg)
+    ![Files in Lakehouse](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.3.1a2.jpg?raw=true)
 
 
   #### **Load JSON Data into a DataFrame**
@@ -397,7 +397,7 @@ By default, session timeout is 20 minutes. You can extend it while working on de
 
   Copy the relative path of **observationraw**
 
-  ![Path of observationraw shortcut](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.3.1a3.jpg)
+  ![Path of observationraw shortcut](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.3.1a3.jpg?raw=true)
 
   ~~~python
   from pyspark.sql.functions import from_json,col
@@ -419,7 +419,7 @@ By default, session timeout is 20 minutes. You can extend it while working on de
 
   Let's load Parquet data from **patientraw** shorcut and display the first 10 records:
 
-  ![Path of patientraw shortcut](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.3.1a4.jpg)
+  ![Path of patientraw shortcut](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.3.1a4.jpg?raw=true)
 
   ~~~python
   patient_shortcut_path = "Files/patientraw/"
@@ -674,7 +674,7 @@ This significantly **reduces cumulative session startup time**, improving develo
 1. Click on the **Connect** icon.  
 2. Select **New Standard Session** and run your Notebook.  
 
-![Session](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.4.1a.jpg)
+![Session](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.4.1a.jpg?raw=true)
 
 #### **Testing High Concurrency (HC) Mode**  
 1. Create **two Notebooks** (Notebook 1 and Notebook 2) for testing.  
@@ -682,14 +682,14 @@ This significantly **reduces cumulative session startup time**, improving develo
    - Click on the **Connect** icon.  
    - Choose **New High Concurrency Session** and run Notebook 1. 
 
-![HC Session](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.4.1b.jpg) 
+![HC Session](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.4.1b.jpg?raw=true) 
 
 3. In **Notebook 2**, check the available sessions:  
    - Click on the **Connect** icon.  
    - You will see the **existing High Concurrency session** available for attachment.  
    - Attach Notebook 2 to the same session and run it.  
 
-![Attaching to existing HC Session](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.4.1c.jpg) 
+![Attaching to existing HC Session](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.4.1c.jpg?raw=true) 
 
 This approach **optimizes resource usage and accelerates execution times**, enhancing your interactive data workflows! 🚀 
 
@@ -725,11 +725,11 @@ In this lab, you'll explore how to configure and publish your Spark environment 
 
 To get started, open the **Notebook** and click on the **Environment** dropdown, as shown below:  
 
-![Selecting the environment](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.5.1a1.jpg)  
+![Selecting the environment](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.5.1a1.jpg?raw=true)  
 
 If your Spark job requires additional libraries, you can **add public or custom libraries**:  
 
-![Adding custom libraries](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.5.1a.jpg)  
+![Adding custom libraries](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.5.1a.jpg?raw=true)  
 
 Once you've made your changes, remember to **Save & Publish** for them to take effect.  
 
@@ -752,11 +752,11 @@ To customize or create a Spark pool, go to **Workspace Spark Settings** (admin a
 
 📸 Screenshots for reference:  
 
-![Compute Selection](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.5.2a.jpg)  
+![Compute Selection](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.5.2a.jpg?raw=true)  
 
-![Pool Configuration](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.5.2b.jpg)  
+![Pool Configuration](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.5.2b.jpg?raw=true)  
 
-![Finalize Settings](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.5.2c.jpg)  
+![Finalize Settings](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.5.2c.jpg?raw=true)  
 
 #### 📌 Presentation (5 min.)
 
@@ -779,7 +779,7 @@ To ensure efficient resource usage, **Autoscaling** and **Dynamic Allocation** h
 
 📸 Selecting Compute Pools:  
 
-![Pool Selection](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.5.3a.jpg)  
+![Pool Selection](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.5.3a.jpg?raw=true)  
 
 ---
 
