@@ -7,6 +7,9 @@ You have two ways to approach this lab:
 **Option 1:** Create a new Notebook and follow the step-by-step instructions.  
 **Option 2:** Download the pre-built Notebook [module-1-developing-spark/Lab 1 - Developing Spark Applications.ipynb](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/module-1-developing-spark/Lab%201%20-%20Developing%20Spark%20Applications.ipynb), run the code, and experiment with it.
 
+Create two Lakehouses silver and bronze by clicking on "Add data items":
+![Fabric UI](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.1a1.jpg?raw=true)  
+
 #### 📌 Presentation (5 min.)
 
 ## 🎯 What You'll Learn 
