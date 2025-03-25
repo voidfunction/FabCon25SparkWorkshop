@@ -45,7 +45,7 @@ In this lab, we'll implement the **Medallion Architecture**, a structured approa
 - Some use Bronze for Delta storage, treating Silver as a logical layer with views rather than a separate physical storage layer.
 Ultimately, the goal is to create value from data while ensuring logical organization of transformations to support replayability, comprehensive auditing, and scalable data consumption at the required level of cleanliness.**
 
-![MEDALLION LAYERS] https://learn.microsoft.com/en-us/fabric/onelake/media/onelake-medallion-lakehouse-architecture/onelake-medallion-lakehouse-architecture-example.png
+![MEDALLION LAYERS] (https://learn.microsoft.com/en-us/fabric/onelake/media/onelake-medallion-lakehouse-architecture/onelake-medallion-lakehouse-architecture-example.png)
 
 This layered approach ensures data is efficiently processed, transformed, and made ready for analysis. 🚀  
 
