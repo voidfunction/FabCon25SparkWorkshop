@@ -19,25 +19,21 @@ Unlock the full potential of Apache Spark in Microsoft Fabric with this comprehe
 
 
 > [!IMPORTANT]
-> 9:00 am - 9:30 am - [Introduction, Set Up and Overview of Fabric Analytics Platform](exercise-0-setup/start.md)
+> 9:00 am - 9:20 am - [Introduction, Set Up and Overview of Fabric Analytics Platform](exercise-0-setup/start.md)
 > 
-> 9:30 am - 10:30 am - [Module 1 - Developing Spark Applications](./module-1-developing-spark/developing-spark.md) 
+> 9:20 am - 10:30 am - [Module 1 - Developing Spark Applications](./module-1-developing-spark/developing-spark.md) 
 > 
 > 10:30 am - 10:45 am - Break
 > 
-> 10:45 am - 11:45 pm - [Module 2 - Orchestrating Spark](./module-2-orchestrating-spark/orchestrating-spark.md)
+> 10:45 am - 12:00 pm - [Module 2 - Orchestrating Spark](./module-2-orchestrating-spark/orchestrating-spark.md)
 > 
-> 12:00 am - 01:00 pm - Lunch Break
+> 12:00 pm - 01:00 pm - Lunch Break
 > 
-> 01:00 pm - 02:00 pm - [Module 3 - Job Scheduling, Monitoring, and Debugging](./module-3-scheduling-monitoring-debugging/scheduling-monitoring-debugging.md)
+> 01:00 pm - 02:10 pm - [Module 3 - Job Scheduling, Monitoring, and Debugging](./module-3-scheduling-monitoring-debugging/scheduling-monitoring-debugging.md)
 > 
-> 03:00 pm - 03:05 pm - Break
+> 02:10 pm - 02:20 pm - Break
 >
-> 02:05 pm - 03:05 pm - [Module 4 - Performance Tuning, Optimizing, and Scaling](./module-4-tuning-optimizing-scaling/tuning-optimizing-scaling.md)
+> 02:20 pm - 03:30 pm - [Module 4 - Performance Tuning, Optimizing, and Scaling](./module-4-tuning-optimizing-scaling/tuning-optimizing-scaling.md)
 >
-> 03:05 pm - 03:15 pm - Break
+> 03:30 pm - 04:00 pm - Q&A
 > 
-> 03:15 pm - 03:45 pm - [Module 5 - CICD / Misc. (content ONLY, no lab)](module-5-cicd-misc/cicd-misc.md)
-> 
-> 03:45 pm - 04:15 pm - Q&A
->
