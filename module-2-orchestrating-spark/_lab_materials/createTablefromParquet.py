@@ -1,6 +1,5 @@
 import sys
 import os
-#import Constant
 from pyspark.sql import SparkSession
 from pyspark.conf import SparkConf
 
@@ -10,13 +9,11 @@ if __name__ == "__main__":
     #Spark session builder
     spark_session = (SparkSession
           .builder
-          .appName("sjdsampleapp") 
+          .appName("sjd-fabcon2025") 
           .config("spark.some.config.option", "some-value")
           .getOrCreate())
     
     spark_context = spark_session.sparkContext
-    spark_context.setLogLevel("DEBUG")
-    
 
 
     print("spark.synapse.pool.name : " + spark_session.conf.get("spark.synapse.pool.name")) 
@@ -31,9 +28,8 @@ if __name__ == "__main__":
     print("spark.dynamicAllocation.maxExecutors : " + spark_session.conf.get("spark.dynamicAllocation.maxExecutors")) 
     print("spark.dynamicAllocation.minExecutors : " + spark_session.conf.get("spark.dynamicAllocation.minExecutors")) 
     
-    #tableName = "yellowtripdata"
-    # You can download the sample Parquet file from this site "https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page" and upload it to the files section of the lakehouse. 
-    parquetFilePath = "Files/yellow_tripdata_2022-01.parquet"
+
+    parquetFilePath = "Files/yellow_tripdata_sampledata.parquet"
     #deltaTablePath = SaveToLH + "/Tables/" + tableName
     deltaTablePath = "Tables/yellowtrip"
 
