@@ -11,57 +11,149 @@
 > * [Task 2.4.3 2.4.3 Reference multi notebooks via ```notebookutils.notebook.runMultiple```](#243-reference-multi-notebooks-via-notebookutilsnotebookrunmultiple)
 > * [Task 2.5 Notebook resoures](#25-notebook-resources) -->
 
-# Module 3: Job Scheduling, Monitoring, and Debugging
-- Navigating Spark UI (for task skews and utilization, native execution, rolling logs for drive and executors)
-- Spark monitoring UI (resource usage, cucurrent job analysis,  snapshot of pipeline, HC mode, in progress job, nbutils)
-- Notebook contextual monitoring: https://learn.microsoft.com/en-us/fabric/data-engineering/spark-monitor-debug
+# 🚀 Lab 3: Job Scheduling, Monitoring, and Debugging  
 
-- Live application debugging (print statements, logging, breakpoints, getNumPartitions, etc.)
-- Monitoring for HC (map jobs to notebook, REPL level log)
-- Emit spark log/metrics to eventhub/blob storage
+## 🏗️ What You'll Learn  
+In this lab, you'll dive into essential Spark monitoring and debugging techniques to gain deep insights into your Spark applications.  
+
+## 🔍 Exploring the Spark UI  
+- Detect task skews & utilization issues
+- Track native execution
+- Leverage rolling logs  
+
+## 📊 Spark Monitoring UI  
+- Analyze resource usage  
+- Investigate concurrent jobs  
+- View snapshots of your pipeline 
+- Utilize notebook utilities
+
+## 🛠️ Live Application Debugging
+- Use print statements & logging  
+- Set breakpoints 
+- Analyze partitions (`getNumPartitions`)
+
+## 🔥 High Concurrency (HC) Monitoring   
+- Job-to-notebook mapping 
+- REPL-level logging 
+
+## 📡 Emitting Spark Logs & Metrics
+- **Event Hub** for real-time monitoring.  
+- **Blob Storage** for long-term retention and auditing.  
+
+---
+
+## 🖥️ Context: Microsoft Fabric Spark Monitoring  
+Microsoft Fabric’s Spark monitoring offers a **web-UI-driven experience** with powerful built-in tools to:  
+✔️ Track Spark applications in progress.  
+✔️ Browse historical Spark activity.  
+✔️ Analyze performance bottlenecks.  
+✔️ Troubleshoot failures effectively.  
+
+With multiple entry points, Spark monitoring ensures seamless access to job details, making it easier to optimize execution and resolve issues.  
+
+## Preparation  
+
+To get started, follow these steps:  
+
+1. **Upload the dataset**  
+   - Add the file [`online_retail.csv`](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/module-3-scheduling-monitoring-debugging/online_retail.csv) to your lakehouse.  
+
+2. **Import the notebook**  
+   - Load the [`SparkMonitoring-2025.ipynb`](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/module-3-scheduling-monitoring-debugging/SparkMonitoring-2025.ipynb) notebook into your environment.  
+
+Once completed, you're ready to proceed with this lab ! 🚀 
+
+## 3.1 Monitor Hub  
+
+The **Monitor Hub** is the centralized portal for tracking Spark activities across different components. With a quick glance, you can:  
+
+- View in-progress Spark applications triggered from **Notebooks, Spark Job Definitions, and Pipelines**.  
+- Search and filter Spark applications  
+- Drill down into Spark execution details for deeper insights.  
+
+### Accessing the Monitor Hub  
+
+To open the Monitor Hub from the **Fabric portal**, follow these steps:  
+
+1. Navigate to the **left sidebar**.  
+2. Click on **Monitor** to access the monitoring pane.  
+
+Here, you can explore your Spark jobs effortlessly.  
+
+![Monitor Hub Navigation](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/module-3-scheduling-monitoring-debugging/_media/monitoring-hub-in-the-left-side-navigation-bar.png?raw=true)  
+
+Stay on top of your Spark applications with ease! 🚀  
+
+## 3.2 Item Recent Runs  
+
+The **Recent Runs** feature helps you track your current and past activities for specific items. It provides key insights, including:  
+
+- **Submitter** – Who initiated the job  
+- **Status** – Whether the job is running, completed, or failed  
+- **Duration** – How long the job took  
+- **Other details** – Additional execution metadata  
+
+### Accessing Recent Runs  
+
+To view recent runs, follow these steps:  
+
+1. Open the **Microsoft Fabric** homepage.  
+2. Select the **workspace** where your job is running.  
+3. Locate the relevant **Spark Job Definition, Notebook, or Pipeline**.  
+4. Open the **context menu** for the item and select **Recent Runs**.  
+5. The **Recent Runs** pane will display past execution details for easy monitoring.  
+
+![Recent Runs List](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/module-3-scheduling-monitoring-debugging/_media/recent-runs-list.png?raw=true)  
+
+## 3.3 Notebook Contextual Monitoring  
+
+**Notebook Contextual Monitoring** brings everything you need into one place—**authoring, monitoring, and debugging Spark jobs** seamlessly. With this feature, you can:  
+
+- **Track Spark job progress** in real time.  
+- **View execution details** like tasks and executors.  
+- **Access Spark logs** directly at the **Notebook cell level**.  
+- Get **real-time insights** from the built-in **Spark Advisor**, which provides code recommendations, execution analysis, and error debugging.  
+
+## 3.3.1 Monitor Spark Job Progress  
+
+A **real-time progress bar** provides instant visibility into Spark job execution within each Notebook cell. This helps you:  
+
+✅ Monitor the status of each Spark job.  
+✅ Track task execution across different stages.  
+✅ Troubleshoot efficiently with live updates.  
+
+### Try it out!  
+
+🚀 **Run the cell below** and expand the **Spark Jobs** section to view real-time status updates and task progress across execution stages.  
+
+![Spark Monitoring Progress](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/module-3-scheduling-monitoring-debugging/_media/spark-monitor-progress.png?raw=true)  
+
+Stay on top of your Spark jobs like a pro! 💡🔥  
+
+### 3.3.2 Monitor Resource Usage  
+
+The **Executor Usage Graph** provides a **visual representation** of **Spark job executors and resource consumption**.  
+
+- Currently, only the runtime information of spark 3.4 and above will display this feature. 
+- Displays **real-time resource usage** per code cell.  
+- Helps optimize performance by analyzing **executor allocation**.  
+
+🔹 **Try it out:** Click on the **Resources** tab to view the line chart for your code cell’s resource usage.  
+
+![Resource Usage Graph](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/module-3-scheduling-monitoring-debugging/_media/resource.png?raw=true)  
+
+With **Notebook Contextual Monitoring**, you can **debug faster, optimize better, and gain deeper insights** into your Spark jobs—all in one place! 🚀  
 
 
-## Context
-Microsoft Fabric Spark monitoring is designed to offer a web-UI based experience with built-in rich capabilities for monitoring the progress and status of Spark applications in progress, browsing past Spark activities, analyzing and optimizing performance, and facilitating troubleshooting of failures. Multiple entry points are available for browsing, monitoring, and viewing Spark application details.
+### 3.3.3 Access Spark Real-Time Logs  
 
-## Preparation
+Need to debug issues quickly? **Contextual Monitoring** brings **Spark logs** directly into your notebook! 🛠️  
 
-- upload the file [./online_retail.csv](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/module-3-scheduling-monitoring-debugging/online_retail.csv) into your lakehouse
-- import this notebook: [./SparkMonitoring-2025.ipynb](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/module-3-scheduling-monitoring-debugging/SparkMonitoring-2025.ipynb)
+- Easily locate **exceptions, warnings, and errors**  
+- **Search or filter logs** for faster troubleshooting  
+- Click on the **Log tab** in the cell to explore logs in real-time  
 
-## 3.1 Monitor hub
-The Monitor hub serves as a centralized portal for browsing Spark activities across items. At a glance, you can view in-progress Spark applications triggered from Notebooks, Spark Job Definitions, and Pipelines. You can also search and filter Spark applications based on different criteria and drill down to view more Spark execution details of a Spark application. From the Fabric portal, select Monitor from the navigation pane to open the Monitor hub.
-
-You can access the Monitor pane to view various Apache Spark activities by selecting Monitor from the navigation bar.
-![](./_media/monitoring-hub-in-the-left-side-navigation-bar.png)
-
-## 3.2 Item recent runs
-When working on specific items, the item Recent Runs feature allows you to browse the item's current and recent activities and gain insights on the submitter, status, duration, and other information for activities submitted by you or others.
-
-We can open Recent runs pane with the following steps:
-- Open the Microsoft Fabric homepage and select a workspace where you want to run the job.
-- Selecting Spark job definition \ notebook item context \ pipeline item context menu shows the recent run option.
-- Select Recent runs.
-- Open the recent run pane from the Spark job definition \ notebook item context.
-
-![](./_media/recent-runs-list.png)
-
-## 3.3 Notebook contextual monitoring
-Notebook Contextual Monitoring offers the capability of authoring, monitoring, and debugging Spark jobs within a single place. You can monitor Spark job progress, view Spark execution tasks and executors, and access Spark logs within a Notebook at the Notebook cell level. The Spark advisor is also built into Notebook to offer real-time advice on code and cell Spark execution and perform error analysis.
-
-### 3.4.1 Monitor Spark Job progress
-A Spark job progress indicator is provided with a real-time progress bar that helps you monitor the job execution status for each notebook cell. You can view the status and tasks' progress across your Spark jobs and stages.
-![](./_media/spark-monitor-progress.png)
-
-### 3.4.2 Monitor Resource usage
-The executor usage graph visually displays the allocation of Spark job executors and resource usage. Currently, only the runtime information of spark 3.4 and above will display this feature. Click on Resources tab, the line chart for the resource usage of code cell will be showing.
-![](./_media/resource.png)
-
-
-### 3.4.3 Access Spark Real-time logs
-Spark logs are essential for locating exceptions and diagnosing performance or failures. The contextual monitoring feature in the notebook brings the logs directly to you for the specific cell you are running. You can search the logs or filter them by errors and warnings.
-![](./_media/real-time-logs.png)
-
+![Real-Time Logs](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/module-3-scheduling-monitoring-debugging/_media/resource.png?raw=true)
 
 ## 3.4 Spark job definition inline monitoring
 
