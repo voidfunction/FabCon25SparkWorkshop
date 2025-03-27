@@ -92,7 +92,7 @@ Alternatively, if you're importing a pre-built Notebook, click on import.
 
 That's it! You're ready to start coding in Spark in Fabric Notebook ! ✨  
 
-### 1.2.2 Integrating with Visual Studio Code
+### 1.2.2 Integrating with Visual Studio Code (🛠 Presentation, No Hands-On)
 
 You can integrate with Visual studio desktop or web. For this lab, we will set up Visual Studio web. 
 
