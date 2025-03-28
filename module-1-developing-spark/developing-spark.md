@@ -29,6 +29,24 @@ By the end of this lab, you'll gain insights into:
 Now that you have an overview, let's get started with hands-on exercises! 🚀
 
 
+##### **Preparation**  
+1. Create two Lakehouses (with schema): `silver` and `gold` in your workspace.  
+   To create Lakehouses with schema, click on **+Lakehouses** in the left sidebar, then select **Add New Lakehouse**. 
+
+![Create Lakehouse](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/preparation1.jpg?raw=true) 
+
+![Create Lakehouse](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/preparation2.jpg?raw=true) 
+
+![Create Lakehouse](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/preparation3.jpg?raw=true) 
+   
+2. Make **silver** the default Lakehouse for this notebook.  
+   This can be done by selecting **silver** as the default in the Lakehouse section in the left as shown in the screenshot below:
+
+![Setting Default Lakehouse](![Create Lakehouse](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/preparation4.jpg?raw=true) ) 
+
+**Important:** Ensure that both `silver` and `gold` Lakehouses are created before proceeding with the exercises, as they will be used in the upcoming steps.
+
+
 ## 1.1 Understanding the Medallion Architecture  
 
 In this lab, we'll implement the **Medallion Architecture**, a structured approach to organizing data in layers for better performance and reliability:  
