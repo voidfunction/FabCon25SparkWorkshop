@@ -13,43 +13,23 @@
 
 # 🚀 Lab 3: Job Scheduling, Monitoring, and Debugging  
 
-## 🏗️ What You'll Learn  
-In this lab, you'll dive into essential Spark monitoring and debugging techniques to gain deep insights into your Spark applications.  
+## 🎯 What You'll Learn 
 
-## 🔍 Exploring the Spark UI  
-- Detect task skews & utilization issues
-- Track native execution
-- Leverage rolling logs  
+By the end of this lab, you'll gain insights into:  
+- **Exploring the Spark UI**: Detect task skews & utilization issues
+- **Spark Monitoring UI**: Analyze resource usage, view snapshots of your pipeline 
+- Live Application Debugging
+- High Concurrency (HC) Monitoring
+- Emitting Spark Logs & Metrics to Event Hub and Blob Storage
 
-## 📊 Spark Monitoring UI  
-- Analyze resource usage  
-- Investigate concurrent jobs  
-- View snapshots of your pipeline 
-- Utilize notebook utilities
-
-## 🛠️ Live Application Debugging
-- Use print statements & logging  
-- Set breakpoints 
-- Analyze partitions (`getNumPartitions`)
-
-## 🔥 High Concurrency (HC) Monitoring   
-- Job-to-notebook mapping 
-- REPL-level logging 
-
-## 📡 Emitting Spark Logs & Metrics
-- **Event Hub** for real-time monitoring.  
-- **Blob Storage** for long-term retention and auditing.  
-
----
-
-## 🖥️ Context: Microsoft Fabric Spark Monitoring  
+### 🖥️ Context: Microsoft Fabric Spark Monitoring  
 Microsoft Fabric’s Spark monitoring offers a **web-UI-driven experience** with powerful built-in tools to:  
 ✔️ Track Spark applications in progress.  
 ✔️ Browse historical Spark activity.  
 ✔️ Analyze performance bottlenecks.  
 ✔️ Troubleshoot failures effectively.  
 
-With multiple entry points, Spark monitoring ensures seamless access to job details, making it easier to optimize execution and resolve issues.  
+With multiple entry points, Spark monitoring ensures seamless access to job details, making it easier to optimize execution and resolve issues. 
 
 ## Preparation  
 
@@ -155,44 +135,24 @@ Need to debug issues quickly? **Contextual Monitoring** brings **Spark logs** di
 
 ![Real-Time Logs](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/module-3-scheduling-monitoring-debugging/_media/resource.png?raw=true)
 
-## 3.4 Spark job definition inline monitoring
 
-The Spark job definition Inline Monitoring feature allows you to view Spark job definition submission and run status in real-time, as well as view the Spark job definition's past runs and configurations. You can navigate to the Spark application detail page to view more details.
-
-### 3.4.1 Spark job definition inline monitoring
-The Spark job definition inline monitoring feature allows you to view Spark job definition submission and run status in real-time. You can also view the Spark job definition's past runs and configurations and navigate to the Spark application detail page to view more details.
-![](./_media/spark-job-definition-inline-monitoring.png)
-
-
-### 3.4.2 Spark job definition item view in workspace
-You can access the job runs associated with specific Spark job definition items by using the Recent runs contextual menu on the workspace homepage.
-![](./_media/spark-job-definition-artifact-view-in-workspace.png)
-
-
-## 3.5 Pipeline Spark activity inline monitoring
-For Pipeline Spark Activity Inline Monitoring, deep links have been built into the Notebook and Spark job definition activities within the Pipeline. You can view Spark application execution details, the respective Notebook and Spark job definition snapshot, and access Spark logs for troubleshooting. If the Spark activities fail, the inline error message is also available within Pipeline Spark activities.
-
-[Snapshot](https://learn.microsoft.com/en-us/fabric/data-engineering/spark-detail-monitoring#item-snapshots)
-![](./_media/related-items-snapshot.png)
-
-
-## 3.6 OSS based Spark UI/Spark History Server
+## 3.4 OSS based Spark UI/Spark History Server
 
 Use extended Apache Spark history server to debug and diagnose Apache Spark applications.
 
-### 3.6.1 Open the Spark web UI from progress indicator notebook
+### 3.4.1 Open the Spark web UI from progress indicator notebook
 When an Apache Spark job is triggered, the button to open Spark web UI is inside the More action option in the progress indicator. Select Spark web UI and wait for a few seconds, then the Spark UI page appears.
 ![](./_media/spark-web-ui-in-the-progress-indicator-notebook.png)
 
-### 3.6.2 Open the Spark web UI from Apache Spark application detail page
+### 3.4.2 Open the Spark web UI from Apache Spark application detail page
 The Spark web UI can also be opened through the Apache Spark application detail page. Select Monitor on the left side of the page, and then select an Apache Spark application. The detail page of the application appears.
 ![](./_media/spark-web-ui-from-application-detail-page.png)
 
-### 3.6.2 Advanced enhancement on Spark UI/Spark History Server
+### 3.4.3 Advanced enhancement on Spark UI/Spark History Server
 [Graph tab in Apache Spark history server](https://learn.microsoft.com/en-us/fabric/data-engineering/apache-spark-history-server#graph-tab-in-apache-spark-history-server)
 
 
-## 3.7 Run serires
+## 3.5 Run serires
 The Apache Spark run series automatically categorizes your Spark applications based on recurring pipeline activities, manual notebook runs, or Spark job runs from the same notebook or Spark job definition.
 
 The run series feature illustrates the duration trend and data input or output trend for each Spark application instance. It automatically scans the run series, detects anomalies, and provides detailed views for individual Spark applications.
@@ -202,10 +162,30 @@ You can access the monitor run series feature from the **Monitoring hub**'s hist
 ![](./access-run-series-from-recent-run.png)
 
 
-## 3.8 Spark advisor
+## 3.6 Spark advisor
 The Apache Spark advisor analyzes commands and code run by Apache Spark and displays real-time advice for Notebook runs. The Apache Spark advisor has built-in patterns to help users avoid common mistakes. It offers recommendations for code optimization, performs error analysis, and locates the root cause of failures.
 
 ![](./errors.png)
+
+## 3.7 Spark job definition inline monitoring
+
+The Spark job definition Inline Monitoring feature allows you to view Spark job definition submission and run status in real-time, as well as view the Spark job definition's past runs and configurations. You can navigate to the Spark application detail page to view more details.
+
+### 3.7.1 Spark job definition inline monitoring
+The Spark job definition inline monitoring feature allows you to view Spark job definition submission and run status in real-time. You can also view the Spark job definition's past runs and configurations and navigate to the Spark application detail page to view more details.
+![](./_media/spark-job-definition-inline-monitoring.png)
+
+
+### 3.7.2 Spark job definition item view in workspace
+You can access the job runs associated with specific Spark job definition items by using the Recent runs contextual menu on the workspace homepage.
+![](./_media/spark-job-definition-artifact-view-in-workspace.png)
+
+
+## 3.8 Pipeline Spark activity inline monitoring
+For Pipeline Spark Activity Inline Monitoring, deep links have been built into the Notebook and Spark job definition activities within the Pipeline. You can view Spark application execution details, the respective Notebook and Spark job definition snapshot, and access Spark logs for troubleshooting. If the Spark activities fail, the inline error message is also available within Pipeline Spark activities.
+
+[Snapshot](https://learn.microsoft.com/en-us/fabric/data-engineering/spark-detail-monitoring#item-snapshots)
+![](./_media/related-items-snapshot.png)
 
 ## 3.9 Collect log with Azure log analystics, Azure Storage account and Azure eventhub
 
