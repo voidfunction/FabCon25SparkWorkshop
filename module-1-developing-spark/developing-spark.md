@@ -112,6 +112,11 @@ That's it! You're ready to start coding in Spark in Fabric Notebook ! ✨
 
 ### 1.2.2 Integrating with Visual Studio Code (🛠 Presentation, No Hands-On)
 
+🎥 **See the Visual Studio integration in action!**  
+👉 [Click here to watch the video](https://www.youtube.com/watch?v=7TGsTd1SdoU)  
+
+Here are the detailed steps:
+
 You can integrate with Visual studio desktop or web. For this lab, we will set up Visual Studio web. 
 
 #### 1. Install the Fabric Data Engineering VS Code extension for the Web
@@ -138,13 +143,9 @@ Open your current notebook in the VS Code for the Web experience by clicking the
 
 ![Open Notebook with VS Code Web](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.2b.jpg?raw=true) 
 
-select Synapse VS Code -Remote as the kernel and then select Synapse PySpark.
+select Fabric Runtime as the kernel and then select PySpark.
 
-![Selecting Kernel](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.2c.jpg?raw=true) 
-
-![Selecting Kernel](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.2d.jpg?raw=true) 
-
-If configurely correctly, you will see Syapse PySpark in the selected kernel as shown here
+If configured correctly, you will see Fabric Runtime in the selected kernel. 
 
 ![Selected Kernel](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.1.2e.jpg?raw=true) 
 
@@ -386,11 +387,11 @@ By default, session timeout is 20 minutes. You can extend it while working on de
 
   ### 1.3.1 Bronze Layer: Load Raw Data into a **DataFrame (DF)**
 
-  We have raw **FHIR Patient** and **Observations** data are stored in **Azure Data Lake Storage (ADLS)**. We have created Shortcuts to ADLS Gen2. Shortcuts are the objects in OneLake that point to other storage locations. Shortcuts just appear as another folder in the Lakehouse.
+  We have raw **FHIR Patient** and **Observations** data are stored in **bronze Lakehouse**. We have given you read access to this Lakehouse. 
   
   For this lab, you can acess the raw data using shortcuts **observationsraw** and **patientraw** in **bronzerawdata** Lakehouse. 
 
-  To attach **bronzerawdata** lakehouse to the Notebook, click +Lakehouses and select the bronzerawdata in existing Lakehouses with schema. 
+  To attach **bronze** lakehouse to the Notebook, click +Lakehouses and select the bronze in existing Lakehouses with schema. 
 
   ![Attaching Lakehouse](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.3.1a1.jpg?raw=true)
 
@@ -398,7 +399,7 @@ By default, session timeout is 20 minutes. You can extend it while working on de
   
   You can refer to the Spark documentation for the methods to read different formats: https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.DataFrameReader.html
 
-  In this lab, we'll focus on reading **Parquet** files and **streaming JSON** files. We will read the shortcuts observationsraw (JSON files) and patientraw (Parquet files). 
+  In this lab, we'll focus on reading **Parquet** files and **streaming JSON** files. We will read the observationsraw (JSON files) and patientraw (Parquet files) from bronze Lakehouse. 
 
     ![Files in Lakehouse](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.3.1a2.jpg?raw=true)
 
@@ -409,27 +410,25 @@ By default, session timeout is 20 minutes. You can extend it while working on de
 
   In Spark, a DataFrame is a distributed collection of data organized into named columns similar to an SQL table. It is similar to a table in a relational database or a spreadsheet in that it has a schema, which defines the types and names of its columns, and each row represents a single record or observation.
 
-  To begin, let's load a JSON file from Azure Data Lake Storage (ADLS) into a Spark DataFrame. 
+    To begin, let's load a JSON file from bronze Lakehouse files into a Spark DataFrame. 
 
-  In a new code cell, use the following code to:
-  - read the JSON files
-  - print the schema
-  - display the data
+    In a new code cell, use the following code to:
+    - read the JSON files
+    - print the schema
+    - display the data
 
-  Copy the relative path of **observationraw**
-
-  ![Path of observationraw shortcut](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.3.1a3.jpg?raw=true)
+  Copy the ABFS path of **observationraw**
 
   ~~~python
   from pyspark.sql.functions import from_json,col
 
-  observations_shortcut_path="Files/observationsraw"
-  # Load JSON data
-  observations_raw_df = spark.read.json(observations_shortcut_path)
+    observations_path="abfss://47938747-73b4-4f78-99dc-4ff2afa78142@onelake.dfs.fabric.microsoft.com/443d992d-01f1-4caa-9345-088e81dd81df/Files/observationsraw"
+    # Load JSON data
+    observations_raw_df = spark.read.json(observations_path)
 
-  observations_raw_df.printSchema()
+    observations_raw_df.printSchema()
 
-  display(observations_raw_df)
+    display(observations_raw_df)
   ~~~
 
   **printSchema()**: Prints the schema of the DataFrame, giving you an overview of the data structure.
@@ -438,20 +437,20 @@ By default, session timeout is 20 minutes. You can extend it while working on de
 
   #### **Read Parquet Data**
 
-  Let's load Parquet data from **patientraw** shorcut and display the first 10 records:
+  Let's load Parquet data from **patientraw** and display the first 10 records:
 
   ![Path of patientraw shortcut](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.3.1a4.jpg?raw=true)
 
   ~~~python
-  patient_shortcut_path = "Files/patientraw/"
+  patient_path = "abfss://47938747-73b4-4f78-99dc-4ff2afa78142@onelake.dfs.fabric.microsoft.com/443d992d-01f1-4caa-9345-088e81dd81df/Files/patientraw"
 
-  # Read Parquet files into a DataFrame
-  patient_raw_df = spark.read.parquet(patient_shortcut_path)
+    # Read Parquet files into a DataFrame
+    patient_raw_df = spark.read.parquet(patient_path)
 
-  patient_raw_df.printSchema()
+    patient_raw_df.printSchema()
 
-  # Show the contents of the DataFrame
-  display(patient_raw_df)
+    # Show the contents of the DataFrame
+    display(patient_raw_df)
   ~~~
 
   ### 1.3.2 Silver Layer: Cleaning, De-duplicating, and Flattening Data
@@ -730,7 +729,10 @@ This approach **optimizes resource usage and accelerates execution times**, enha
 
 ---
 
-### 1.5 Configuring & Publishing Your Spark Environment (5 minutes)
+### 1.5 Configuring & Publishing Your Spark Environment (🛠 Presentation, No Hands-On)
+
+🎥 **Watch Configuring Custom Pool and Environment in Action**  
+👉 [Click here to watch the video](https://www.youtube.com/watch?v=4eaT4zzDxgU)
 
 #### 🚀 Set Up Your Spark Environment with Ease!  
 
@@ -779,8 +781,6 @@ To customize or create a Spark pool, go to **Workspace Spark Settings** (admin a
 
 ![Finalize Settings](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.5.2c.jpg?raw=true)  
 
-#### 📌 Presentation (5 min.)
-
 #### Optimize Application with Autoscaling & Dynamic Allocation  
 
 To ensure efficient resource usage, **Autoscaling** and **Dynamic Allocation** help manage compute resources dynamically.  
@@ -807,9 +807,9 @@ To ensure efficient resource usage, **Autoscaling** and **Dynamic Allocation** h
 ### 🌟 Bonus - Spark Structured Streaming
 
 #### Read Streaming JSON Data
-In this section, we will walk through how to read streaming JSON data from a Shortcut to Azure Data Lake Storage (ADLS) using Apache Spark's structured streaming capabilities. This method allows Spark to continuously read new JSON files as they arrive, while ignoring the files that have already been processed. It’s especially useful for processing both historical and real-time data streams.
+In this section, we will walk through how to read streaming JSON data from Lakehouse Files using Apache Spark's structured streaming capabilities. This method allows Spark to continuously read new JSON files as they arrive, while ignoring the files that have already been processed. It’s especially useful for processing both historical and real-time data streams.
 
-1. **Define the Path to Your Data**: Start by specifying the Shortcut path to the JSON files stored in ADLS.
+1. **Define the Path to Your Data**: Start by specifying the ABFS path to the JSON files in bronze Lakehouse.
 
 2. **Set Up the Spark ReadStream**: With the file path defined, use `spark.readStream` to initiate the streaming read operation. The `.json()` method reads the incoming JSON data from the specified path.
 
@@ -917,11 +917,8 @@ observations_schema = StructType([
     ]), True)
 ])
 
-# Path to the observations JSON data (adjust as needed)
-observations_shortcut_path = "Files/observationsraw"
-
 # Read JSON data into a streaming DataFrame with schema specified
-observations_raw_df = spark.readStream.schema(observations_schema).json(observations_shortcut_path)
+observations_raw_df = spark.readStream.schema(observations_schema).json(observations_path)
 
 # Print schema to confirm the structure
 observations_raw_df.printSchema()
