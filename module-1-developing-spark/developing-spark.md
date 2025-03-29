@@ -389,13 +389,13 @@ By default, session timeout is 20 minutes. You can extend it while working on de
 
   We have raw **FHIR Patient** and **Observations** data are stored in **bronze Lakehouse**. We have given you read access to this Lakehouse. 
   
-  For this lab, you can acess the raw data using shortcuts **observationsraw** and **patientraw** in **bronzerawdata** Lakehouse. 
+  For this lab, you can acess the raw data **observationsraw** and **patientraw** in **bronze** Lakehouse. 
 
-  To attach **bronze** lakehouse to the Notebook, click +Lakehouses and select the bronze in existing Lakehouses with schema. 
+  To add **bronze** lakehouse to the Notebook, click +Lakehouses and select the bronze in existing Lakehouses with schema. 
 
   ![Attaching Lakehouse](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/1.3.1a1.jpg?raw=true)
 
-  In Spark, you can load data into a DataFrame using the `spark.read()` method. This allows you to read from a variety of source formats such as CSV, JSON, Parquet, Avro, ORC, Delta, and many others. 
+  In Spark, you can load data into a DataFrame using the `spark.read()` method. This allows you to read from a variety of source formats such as CSV, JSON, Parquet, Avro, ORC, Delta, and many others.
   
   You can refer to the Spark documentation for the methods to read different formats: https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.DataFrameReader.html
 
