@@ -47,7 +47,7 @@ Now that you have an overview, let's get started with hands-on exercises! 🚀
 **Important:** Ensure that both `silver` and `gold` Lakehouses are created before proceeding with the exercises, as they will be used in the upcoming steps.
 
 3. Here is the sample data uploaded in bronze Lakehouse  
-[Lab 1 Data](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/screenshots/module-1-developing-spark/Lab1Data)
+[Lab 1 Data](https://github.com/voidfunction/FabCon25SparkWorkshop/tree/main/module-1-developing-spark/Lab1Data/fhirbronze)
 
 
 ## 1.1 Understanding the Medallion Architecture  
