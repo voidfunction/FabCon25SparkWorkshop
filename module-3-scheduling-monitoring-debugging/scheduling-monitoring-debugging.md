@@ -39,7 +39,7 @@ To get started, follow these steps:
    - Add the file [`online_retail.csv`](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/module-3-scheduling-monitoring-debugging/online_retail.csv) to your lakehouse.  
 
 2. **Import the notebook**  
-   - Load the [`SparkMonitoring-2025.ipynb`](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/module-3-scheduling-monitoring-debugging/Lab%203%20-%20Spark%20Job%20Monitoring.ipynb) notebook into your environment.  
+   - Load the [`Lab 3 - Spark Job Monitoring.ipynb`](https://github.com/voidfunction/FabCon25SparkWorkshop/blob/main/module-3-scheduling-monitoring-debugging/Lab%203%20-%20Spark%20Job%20Monitoring.ipynb) notebook into your environment.  
 
 Once completed, you're ready to proceed with this lab ! 🚀 
 
